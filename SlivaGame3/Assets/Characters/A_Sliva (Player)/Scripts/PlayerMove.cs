@@ -35,7 +35,7 @@ namespace Player
                 _animator.SetBool("isWalking", true);
             }
 
-            else if (_joystick.Horizontal <= 0 || _joystick.Vertical <= 0)
+            else if (_joystick.Horizontal == 0 || _joystick.Vertical == 0)
             {
                 _animator.SetBool("isWalking", false);
             }
