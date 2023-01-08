@@ -7,21 +7,29 @@ using TMPro;
 
 public class DialogController : MonoBehaviour
 {
+    public static DialogController _dialogController;
+
+
+    [SerializeField] private AudioSource _audioSource1;
+    [SerializeField] private AudioSource _audioSource2;
+
     [SerializeField] private AudioClip _dialogSound;
     [SerializeField] private TextMeshProUGUI _dialogText;
     [SerializeField] private float _timeBtwnChars = 0;
 
-    private AudioSource _audioSource;
+    private bool _mightSetDialog = true;
+
+    public bool MightSetDialog { get { return _mightSetDialog; } }
 
     private void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
-        _audioSource.clip = _dialogSound;
+        _dialogController = this;
+        _audioSource1.clip = _dialogSound;
     }
 
     private void Start()
     {
-        SetDialog("Слива", "#AA4BC0", "Здравствуйте ещё раз, Светлана Великая!");
+        //SetDialog("Слива", "#AA4BC0", "Здравствуйте, меня зовут Сливарио.");
     }
 
     public void SetDialog(string Name, string Color, string Text)
@@ -31,6 +39,8 @@ public class DialogController : MonoBehaviour
 
     private IEnumerator DialogPlayback(string Name, string Color, string Text)
     {
+        _mightSetDialog = false;
+
         string nameText = Name;
         string nameColor = Color;
         string name = $"<size={_dialogText.fontSize + 5}><b><color={nameColor}>{nameText}:</color></b></size>";
@@ -54,11 +64,13 @@ public class DialogController : MonoBehaviour
 
                 if (string.IsNullOrWhiteSpace(fullText.ToCharArray()[i - 1].ToString()) == false)
                 {
-                    _audioSource.Play();
+                    _audioSource1.Play();
                 }
 
                 yield return new WaitForSeconds(_timeBtwnChars);
             }
         }
+
+        _mightSetDialog = true;
     }
 }
