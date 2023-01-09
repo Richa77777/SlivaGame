@@ -71,9 +71,9 @@ namespace DialogSystem
 
         private void CheckTouch()
         {
-            if (Input.touchCount > 0)
+            if (Input.GetKeyUp(KeyCode.Mouse0) || Input.touchCount > 0)
             {
-                if (Input.GetTouch(0).phase == TouchPhase.Ended)
+                if (Input.GetKeyUp(KeyCode.Mouse0) || Input.GetTouch(0).phase == TouchPhase.Ended)
                 {
 
                     if (_step < _currentBranch.Count && DialogController._dialogController.MightSetDialog == true)
