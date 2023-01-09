@@ -88,7 +88,7 @@ namespace DialogSystem
             }
         }
 
-        public virtual void SetCurrentBranch(int branchNumber)
+        public void SetCurrentBranch(int branchNumber)
         {
             _currentBranch = _allBranches.AllBranchesList[branchNumber].Branch;
             _step = 0;
