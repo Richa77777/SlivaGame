@@ -3,74 +3,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-[RequireComponent(typeof(AudioSource))]
 
-public class DialogController : MonoBehaviour
+namespace DialogSystem
 {
-    public static DialogController _dialogController;
+    [RequireComponent(typeof(AudioSource))]
 
-
-    [SerializeField] private AudioSource _audioSource1;
-    [SerializeField] private AudioSource _audioSource2;
-
-    [SerializeField] private AudioClip _dialogSound;
-    [SerializeField] private TextMeshProUGUI _dialogText;
-    [SerializeField] private float _timeBtwnChars = 0;
-
-    private bool _mightSetDialog = true;
-
-    public bool MightSetDialog { get { return _mightSetDialog; } }
-
-    private void Awake()
+    public class DialogController : MonoBehaviour
     {
-        _dialogController = this;
-        _audioSource1.clip = _dialogSound;
-    }
-
-    private void Start()
-    {
-        //SetDialog("Слива", "#AA4BC0", "Здравствуйте, меня зовут Сливарио.");
-    }
-
-    public void SetDialog(string Name, string Color, string Text)
-    {
-        StartCoroutine(DialogPlayback(Name, Color, Text));
-    }
-
-    private IEnumerator DialogPlayback(string Name, string Color, string Text)
-    {
-        _mightSetDialog = false;
-
-        string nameText = Name;
-        string nameColor = Color;
-        string name = $"<size={_dialogText.fontSize + 5}><b><color={nameColor}>{nameText}:</color></b></size>";
-
-        string fullText = $"{name} {Text}";
+        public static DialogController _dialogController;
 
 
-        for (int i = name.Length; i <= fullText.Length; i++)
+        [SerializeField] private AudioSource _audioSource1;
+        [SerializeField] private AudioSource _audioSource2;
+
+        [SerializeField] private AudioClip _dialogSound;
+        [SerializeField] private TextMeshProUGUI _dialogText;
+        [SerializeField] private float _timeBtwnChars = 0;
+
+        private bool _mightSetDialog = true;
+
+        public bool MightSetDialog { get { return _mightSetDialog; } }
+
+        private void Awake()
         {
-            if (fullText.ToCharArray()[i - 1].ToString() == "<")
-            {
-                while (fullText?.ToCharArray()?[i - 1].ToString() != ">")
-                {
-                    i++;
-                }
-            }
-
-            if (fullText.ToCharArray()[i - 1].ToString() != "<" && fullText.ToCharArray()[i - 1].ToString() != ">")
-            {
-                _dialogText.text = fullText.Substring(0, i);
-
-                if (string.IsNullOrWhiteSpace(fullText.ToCharArray()[i - 1].ToString()) == false)
-                {
-                    _audioSource1.Play();
-                }
-
-                yield return new WaitForSeconds(_timeBtwnChars);
-            }
+            _dialogController = this;
+            _audioSource1.clip = _dialogSound;
         }
 
-        _mightSetDialog = true;
+        private void Start()
+        {
+            //SetDialog("Слива", "#AA4BC0", "Здравствуйте, меня зовут Сливарио.");
+        }
+
+        public void SetDialog(string Name, string Color, string Text, Dialog.Phrase phrase)
+        {
+            StartCoroutine(DialogPlayback(Name, Color, Text, phrase));
+        }
+
+        private IEnumerator DialogPlayback(string Name, string Color, string Text, Dialog.Phrase phrase)
+        {
+            _mightSetDialog = false;
+
+            string nameText = Name;
+            string nameColor = Color;
+            string name = $"<size={_dialogText.fontSize + 5}><b><color={nameColor}>{nameText}:</color></b></size>";
+
+            string fullText = $"{name} {Text}";
+
+
+            for (int i = name.Length; i <= fullText.Length; i++)
+            {
+                if (fullText.ToCharArray()[i - 1].ToString() == "<")
+                {
+                    while (fullText?.ToCharArray()?[i - 1].ToString() != ">")
+                    {
+                        i++;
+                    }
+                }
+
+                if (fullText.ToCharArray()[i - 1].ToString() != "<" && fullText.ToCharArray()[i - 1].ToString() != ">")
+                {
+                    _dialogText.text = fullText.Substring(0, i);
+
+                    if (string.IsNullOrWhiteSpace(fullText.ToCharArray()[i - 1].ToString()) == false)
+                    {
+                        _audioSource1.Play();
+                    }
+
+                    yield return new WaitForSeconds(_timeBtwnChars);
+                }
+            }
+
+            _mightSetDialog = true;
+            phrase.TriggeringAfterActions();
+        }
     }
 }
