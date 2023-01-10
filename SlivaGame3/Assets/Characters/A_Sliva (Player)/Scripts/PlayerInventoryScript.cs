@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Inventory;
 
-public class PlayerInventoryScript : MonoBehaviour
+namespace Inventory
 {
-    [SerializeField] private InventoryObject _playerInventory;
-    
-    public InventoryObject PlayerInventory { get { return _playerInventory; } }
-
-    private void OnApplicationQuit()
+    public class PlayerInventoryScript : MonoBehaviour
     {
-        _playerInventory.ClearContainer();
+        [SerializeField] private InventoryObject _playerInventory;
+
+        public InventoryObject PlayerInventory { get { return _playerInventory; } }
+
+        private void OnApplicationQuit()
+        {
+            _playerInventory.ClearContainer();
+        }
     }
 }
