@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Inventory
+namespace InventorySpace
 {
     public class DisplayInventory : MonoBehaviour
     {
@@ -16,9 +16,11 @@ namespace Inventory
         private Image[] _slotsImages = new Image[9];
         private TextMeshProUGUI[] _slotsItemCount = new TextMeshProUGUI[9];
 
+
+
         private void Start()
         {
-            _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventoryScript>().PlayerInventory;
+            _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Player.PlayerInventoryScript>().PlayerInventory;
 
             for (int i = 0; i <= _slots.Length - 1; i++)
             {
@@ -27,6 +29,7 @@ namespace Inventory
             }
 
             UpdateInventory();
+
         }
 
         private void Update()
@@ -36,17 +39,77 @@ namespace Inventory
 
         public void UpdateInventory()
         {
-            for (int i = 0; i <= _inventory.Container.Count - 1; i++)
-            {
-                _slots[i].SetActive(true);
-                _slotsImages[i].sprite = _inventory.Container[i].ItemSprite;
-                _slotsItemCount[i].text = _inventory.Container[i].Count.ToString("n0");
+            InventorySlot slot;
 
-                if (_inventory.Container[i].Count == 0)
+            if (_inventory.Container.Items.Count == _inventory.InventoryLimit)
+            {
+                for (int i = 0; i < _inventory.Container.Items.Count; i++)
                 {
-                    _slots[i].SetActive(false);
+                    slot = _inventory.Container.Items[i];
+
+                    _slots[i].gameObject.SetActive(true);
+                    _slotsImages[i].sprite = slot.Item.ItemSprite;
+                    _slotsItemCount[i].text = slot.Count.ToString("n0");
+
+                    if (slot.Count == 0)
+                    {
+                        _slotsItemCount[i].gameObject.SetActive(false);
+                    }
+
+                    else if (slot.Count >= 0)
+                    {
+                        _slotsItemCount[i].gameObject.SetActive(true);
+                    }
+
+                    if (slot.Item.ItemSprite == null)
+                    {
+                        _slotsImages[i].gameObject.SetActive(false);
+                    }
+
+                    else if (slot.Item.ItemSprite != null)
+                    {
+                        _slotsImages[i].gameObject.SetActive(true);
+                    }
                 }
             }
+
+            else if (_inventory.Container.Items.Count < _inventory.InventoryLimit)
+            {
+                for (int i = 0; i < _inventory.Container.Items.Count; i++)
+                {
+                    slot = _inventory.Container.Items[i];
+
+                    _slots[i].gameObject.SetActive(true);
+                    _slotsImages[i].sprite = slot.Item.ItemSprite;
+                    _slotsItemCount[i].text = slot.Count.ToString("n0");
+
+                    if (slot.Count == 0)
+                    {
+                        _slotsItemCount[i].gameObject.SetActive(false);
+                    }
+
+                    else if (slot.Count >= 0)
+                    {
+                        _slotsItemCount[i].gameObject.SetActive(true);
+                    }
+
+                    if (slot.Item.ItemSprite == null)
+                    {
+                        _slotsImages[i].gameObject.SetActive(false);
+                    }
+
+                    else if (slot.Item.ItemSprite != null)
+                    {
+                        _slotsImages[i].gameObject.SetActive(true);
+                    }
+                }
+
+                for (int i = _inventory.Container.Items.Count; i < _inventory.InventoryLimit - _inventory.Container.Items.Count; i++)
+                {
+                    _slots[i].gameObject.SetActive(false);
+                }
+            }
+
         }
     }
 }

@@ -2,71 +2,96 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Items;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
+using System.IO;
 
-namespace Inventory
+namespace InventorySpace
 {
-    [CreateAssetMenu(fileName = "New Inventory System", menuName = "InventorySystem/Inventory", order = 0)]
-    public class InventoryObject : ScriptableObject, ISerializationCallbackReceiver
+    [CreateAssetMenu(fileName = "New Inventory System", menuName = "InventorySystem/Inventory", order = -100)]
+    public class InventoryObject : ScriptableObject
     {
-        [SerializeField] private ItemDataBaseObject _database;
+        [SerializeField] private string _savePath;
 
-        [SerializeField] private List<InventorySlot> _container = new List<InventorySlot>();
+        [SerializeField] private Inventory _container;
 
-        public List<InventorySlot> Container { get { return _container; } }
+        private const int _inventoryLimit = 9;
 
-        public void AddItem(ItemObject item, int count)
+        public int InventoryLimit { get => _inventoryLimit; }
+
+        public Inventory Container { get => _container; set => _container = value; }
+
+        public void AddItem(Item item, int count)
         {
-            if (_container.Count < 9)
+            if (_container.Items.Count < _inventoryLimit)
             {
-                for (int i = 0; i < _container.Count - 1; i++)
+                for (int i = 0; i < _container.Items.Count - 1; i++)
                 {
-                    if (_container[i].Item == item)
+                    if (_container.Items[i].Item.ID == item.ID)
                     {
-                        _container[i].AddAmount(count);
+                        _container.Items[i].AddAmount(count);
                         return;
                     }
                 }
 
-                _container.Add(new InventorySlot(_database.GetId[item], item, count));
+                _container.Items.Add(new InventorySlot(item.ID, item, count));
             }
         }
 
         public void ClearContainer()
         {
-            _container.Clear();
+            _container.Items.Clear();
         }
 
-        public void OnAfterDeserialize()
+        [ContextMenu("Save")]
+        public void Save()
         {
-            for (int i = 0; i < _container.Count; i++)
+            string saveData = JsonUtility.ToJson(this, true);
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(string.Concat(Application.persistentDataPath, _savePath));
+            bf.Serialize(file, saveData);
+            file.Close();
+        }
+
+        [ContextMenu("Load")]
+        public void Load()
+        {
+            if (File.Exists(string.Concat(Application.persistentDataPath, _savePath)))
             {
-                _container[i].Item = _database.GetItem[_container[i].ID];
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(string.Concat(Application.persistentDataPath, _savePath), FileMode.Open);
+                JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
+                file.Close();
             }
         }
 
-        public void OnBeforeSerialize()
+        [ContextMenu("Clear")]
+        public void Clear()
         {
-
+            Container = new Inventory();
         }
+    }
+
+    [System.Serializable]
+    public class Inventory
+    {
+        [SerializeField] private List<InventorySlot> _items = new List<InventorySlot>();
+        public List<InventorySlot> Items { get { return _items; } }
+
     }
 
     [System.Serializable]
     public class InventorySlot
     {
-        [SerializeField] private int _id;
-        [SerializeField] private ItemObject _item;
         [SerializeField] private int _count;
 
-        [SerializeField] private Sprite _itemSprite;
-
-        public int ID { get { return _id; } }
-        public ItemObject Item { get { return _item; } set { _item = value; } }
+        [SerializeField] private Item _item;
         public int Count { get { return _count; } }
-        public Sprite ItemSprite { get { return _itemSprite; } }
+        public Item Item { get { return _item; } set { _item = value; } }
 
-        public InventorySlot(int id, ItemObject item, int count)
+        public InventorySlot(int id, Item item, int count)
         {
-            _id = id;
+            item.ID = id;
             _item = item;
             _count = Mathf.Clamp(count, 0, 99);
         }

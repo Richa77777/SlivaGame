@@ -14,7 +14,7 @@ namespace Player
         [Range (0.0f, 10.0f)]
         [SerializeField] private float _moveSpeed;
 
-        private void Update()
+        private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();

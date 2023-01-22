@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InventorySpace;
 
-namespace Inventory
+namespace Player
 {
     public class PlayerInventoryScript : MonoBehaviour
     {
