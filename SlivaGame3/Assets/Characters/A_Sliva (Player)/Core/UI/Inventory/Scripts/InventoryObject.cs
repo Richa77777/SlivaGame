@@ -29,21 +29,47 @@ namespace InventorySpace
                 {
                     if (_container.Items[i].Item == item)
                     {
+                        if (_container.Items[i].ItemsCount + count <= 0)
+                        {
+                            _container.Items.RemoveAt(i);
+
+                            for (int j = 0; j < _container.Items.Count; j++)
+                            {
+                                DisplayInventory._cellOnOff(_container.Items[j].ItemsCount > 0 ? true : false, j);
+                                DisplayInventory._cellSetCount(_container.Items[j].ItemsCount, j);
+                                DisplayInventory._cellSetImage(_container.Items[j].Item.ItemSprite, j);
+                                DisplayInventory._cellCountOnOff(_container.Items[j].ItemsCount > 1 ? true : false, j);
+                                DisplayInventory._cellImageOnOff(_container.Items[j].Item.ItemSprite != null ? true : false, j, _container.Items[j].Item.ItemSprite);
+                            }
+
+                            for (int j = _container.Items.Count; j < _inventoryLimit - _container.Items.Count; j++)
+                            {
+                                DisplayInventory._cellOnOff(false, j);
+                            }
+
+                            return;
+                        }
+
                         _container.Items[i].AddAmount(count);
 
                         DisplayInventory._cellOnOff(_container.Items[i].ItemsCount > 0 ? true : false, i);
                         DisplayInventory._cellSetCount(_container.Items[i].ItemsCount, i);
-                        DisplayInventory._cellCountOnOff(_container.Items[i].ItemsCount > 1 && _container.Items[i].ItemsCount != 0 ? true : false, i);
+                        DisplayInventory._cellSetImage(_container.Items[i].Item.ItemSprite, i);
+                        DisplayInventory._cellCountOnOff(_container.Items[i].ItemsCount > 1 ? true : false, i);
                         return;
                     }
                 }
 
-                _container.Items.Add(new InventorySlot(item, count));
+                if (count > 0)
+                {
+                    _container.Items.Add(new InventorySlot(item, count));
 
-                DisplayInventory._cellOnOff(_container.Items[_container.Items.Count - 1].ItemsCount > 0 ? true : false, _container.Items.Count - 1);
-                DisplayInventory._cellSetCount(_container.Items[_container.Items.Count - 1].ItemsCount, _container.Items.Count - 1);
-                DisplayInventory._cellCountOnOff(_container.Items[_container.Items.Count - 1].ItemsCount > 1 ? true : false, _container.Items.Count - 1);
-                DisplayInventory._cellImageOnOff(_container.Items[_container.Items.Count - 1].Item.ItemSprite != null ? true : false, _container.Items.Count - 1, _container.Items[_container.Items.Count - 1].Item.ItemSprite);
+                    DisplayInventory._cellOnOff(_container.Items[_container.Items.Count - 1].ItemsCount > 0 ? true : false, _container.Items.Count - 1);
+                    DisplayInventory._cellSetCount(_container.Items[_container.Items.Count - 1].ItemsCount, _container.Items.Count - 1);
+                    DisplayInventory._cellSetImage(_container.Items[_container.Items.Count - 1].Item.ItemSprite, _container.Items.Count - 1);
+                    DisplayInventory._cellCountOnOff(_container.Items[_container.Items.Count - 1].ItemsCount > 1 ? true : false, _container.Items.Count - 1);
+                    DisplayInventory._cellImageOnOff(_container.Items[_container.Items.Count - 1].Item.ItemSprite != null ? true : false, _container.Items.Count - 1, _container.Items[_container.Items.Count - 1].Item.ItemSprite);
+                }
             }
         }
 
@@ -71,6 +97,20 @@ namespace InventorySpace
                 FileStream file = File.Open(string.Concat(Application.persistentDataPath, _savePath), FileMode.Open);
                 JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
                 file.Close();
+            }
+
+            for (int i = 0; i < _container.Items.Count; i++)
+            {
+                DisplayInventory._cellOnOff(_container.Items[i].ItemsCount > 0 ? true : false, i);
+                DisplayInventory._cellSetCount(_container.Items[i].ItemsCount, i);
+                DisplayInventory._cellSetImage(_container.Items[i].Item.ItemSprite, i);
+                DisplayInventory._cellCountOnOff(_container.Items[i].ItemsCount > 1 ? true : false, i);
+                DisplayInventory._cellImageOnOff(_container.Items[i].Item.ItemSprite != null ? true : false, i, _container.Items[i].Item.ItemSprite);
+            }
+
+            for (int i = _container.Items.Count; i < _inventoryLimit - _container.Items.Count; i++)
+            {
+                DisplayInventory._cellOnOff(false, i);
             }
         }
 

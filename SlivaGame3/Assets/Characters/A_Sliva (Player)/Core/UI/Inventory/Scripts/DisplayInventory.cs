@@ -21,6 +21,7 @@ namespace InventorySpace
         public static Action<bool, int> _cellCountOnOff;
         public static Action<bool, int, Sprite> _cellImageOnOff;
         public static Action<int, int> _cellSetCount;
+        public static Action<Sprite, int> _cellSetImage;
 
         private void Start()
         {
@@ -36,6 +37,7 @@ namespace InventorySpace
             _cellCountOnOff += OnOffCellCount;
             _cellImageOnOff += OnOffCellImage;
             _cellSetCount += SetCellCount;
+            _cellSetImage += SetCellImage;
         }
 
         private void OnEnable()
@@ -44,6 +46,7 @@ namespace InventorySpace
             _cellCountOnOff += OnOffCellCount;
             _cellImageOnOff += OnOffCellImage;
             _cellSetCount += SetCellCount;
+            _cellSetImage += SetCellImage;
         }
 
         private void OnDisable()
@@ -52,6 +55,7 @@ namespace InventorySpace
             _cellCountOnOff -= OnOffCellCount;
             _cellImageOnOff -= OnOffCellImage;
             _cellSetCount -= SetCellCount;
+            _cellSetImage -= SetCellImage;
         }
 
         public void OnOffCell(bool isOn, int cellNumber)
@@ -64,15 +68,20 @@ namespace InventorySpace
             _slotsItemCount[cellNumber].gameObject.SetActive(isOn);
         }
 
+        public void SetCellCount(int value, int cellNumber)
+        {
+            _slotsItemCount[cellNumber].text = value.ToString("n0");
+        }
+
         public void OnOffCellImage(bool isOn, int cellNumber, Sprite sprite)
         {
             _slotsImages[cellNumber].sprite = isOn == true ? sprite : null;
             _slotsImages[cellNumber].gameObject.SetActive(isOn);
         }
 
-        public void SetCellCount(int value, int cellNumber)
+        public void SetCellImage(Sprite sprite, int cellNumber)
         {
-            _slotsItemCount[cellNumber].text = value.ToString("n0");
+            _slotsImages[cellNumber].sprite = sprite;
         }
     }
 }
