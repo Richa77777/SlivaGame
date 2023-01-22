@@ -19,22 +19,31 @@ namespace InventorySpace
 
         public int InventoryLimit { get => _inventoryLimit; }
 
-        public Inventory Container { get => _container; set => _container = value; }
+        public Inventory Container { get => _container; }
 
-        public void AddItem(Item item, int count)
+        public void AddItem(ItemObject item, int count)
         {
             if (_container.Items.Count < _inventoryLimit)
             {
-                for (int i = 0; i < _container.Items.Count - 1; i++)
+                for (int i = 0; i < _container.Items.Count; i++)
                 {
-                    if (_container.Items[i].Item.ID == item.ID)
+                    if (_container.Items[i].Item == item)
                     {
                         _container.Items[i].AddAmount(count);
+
+                        DisplayInventory._cellOnOff(_container.Items[i].ItemsCount > 0 ? true : false, i);
+                        DisplayInventory._cellSetCount(_container.Items[i].ItemsCount, i);
+                        DisplayInventory._cellCountOnOff(_container.Items[i].ItemsCount > 1 && _container.Items[i].ItemsCount != 0 ? true : false, i);
                         return;
                     }
                 }
 
-                _container.Items.Add(new InventorySlot(item.ID, item, count));
+                _container.Items.Add(new InventorySlot(item, count));
+
+                DisplayInventory._cellOnOff(_container.Items[_container.Items.Count - 1].ItemsCount > 0 ? true : false, _container.Items.Count - 1);
+                DisplayInventory._cellSetCount(_container.Items[_container.Items.Count - 1].ItemsCount, _container.Items.Count - 1);
+                DisplayInventory._cellCountOnOff(_container.Items[_container.Items.Count - 1].ItemsCount > 1 ? true : false, _container.Items.Count - 1);
+                DisplayInventory._cellImageOnOff(_container.Items[_container.Items.Count - 1].Item.ItemSprite != null ? true : false, _container.Items.Count - 1, _container.Items[_container.Items.Count - 1].Item.ItemSprite);
             }
         }
 
@@ -68,7 +77,7 @@ namespace InventorySpace
         [ContextMenu("Clear")]
         public void Clear()
         {
-            Container = new Inventory();
+            _container = new Inventory();
         }
     }
 
@@ -83,22 +92,21 @@ namespace InventorySpace
     [System.Serializable]
     public class InventorySlot
     {
+        [SerializeField] private ItemObject _item;
         [SerializeField] private int _count;
 
-        [SerializeField] private Item _item;
-        public int Count { get { return _count; } }
-        public Item Item { get { return _item; } set { _item = value; } }
+        public ItemObject Item { get { return _item; } set { _item = value; } }
+        public int ItemsCount { get { return _count; } }
 
-        public InventorySlot(int id, Item item, int count)
+        public InventorySlot(ItemObject item, int count)
         {
-            item.ID = id;
             _item = item;
             _count = Mathf.Clamp(count, 0, 99);
         }
 
         public void AddAmount(int count)
         {
-            _count += Mathf.Clamp(count, 0, 99);
+            _count = Mathf.Clamp(_count + count, 0, 99);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,7 +17,10 @@ namespace InventorySpace
         private Image[] _slotsImages = new Image[9];
         private TextMeshProUGUI[] _slotsItemCount = new TextMeshProUGUI[9];
 
-
+        public static Action<bool, int> _cellOnOff;
+        public static Action<bool, int> _cellCountOnOff;
+        public static Action<bool, int, Sprite> _cellImageOnOff;
+        public static Action<int, int> _cellSetCount;
 
         private void Start()
         {
@@ -28,88 +32,47 @@ namespace InventorySpace
                 _slotsItemCount[i] = _slots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             }
 
-            UpdateInventory();
-
+            _cellOnOff += OnOffCell;
+            _cellCountOnOff += OnOffCellCount;
+            _cellImageOnOff += OnOffCellImage;
+            _cellSetCount += SetCellCount;
         }
 
-        private void Update()
+        private void OnEnable()
         {
-            UpdateInventory();
+            _cellOnOff += OnOffCell;
+            _cellCountOnOff += OnOffCellCount;
+            _cellImageOnOff += OnOffCellImage;
+            _cellSetCount += SetCellCount;
         }
 
-        public void UpdateInventory()
+        private void OnDisable()
         {
-            InventorySlot slot;
+            _cellOnOff -= OnOffCell;
+            _cellCountOnOff -= OnOffCellCount;
+            _cellImageOnOff -= OnOffCellImage;
+            _cellSetCount -= SetCellCount;
+        }
 
-            if (_inventory.Container.Items.Count == _inventory.InventoryLimit)
-            {
-                for (int i = 0; i < _inventory.Container.Items.Count; i++)
-                {
-                    slot = _inventory.Container.Items[i];
+        public void OnOffCell(bool isOn, int cellNumber)
+        {
+            _slots[cellNumber].gameObject.SetActive(isOn);
+        }
 
-                    _slots[i].gameObject.SetActive(true);
-                    _slotsImages[i].sprite = slot.Item.ItemSprite;
-                    _slotsItemCount[i].text = slot.Count.ToString("n0");
+        public void OnOffCellCount(bool isOn, int cellNumber)
+        {
+            _slotsItemCount[cellNumber].gameObject.SetActive(isOn);
+        }
 
-                    if (slot.Count == 0)
-                    {
-                        _slotsItemCount[i].gameObject.SetActive(false);
-                    }
+        public void OnOffCellImage(bool isOn, int cellNumber, Sprite sprite)
+        {
+            _slotsImages[cellNumber].sprite = isOn == true ? sprite : null;
+            _slotsImages[cellNumber].gameObject.SetActive(isOn);
+        }
 
-                    else if (slot.Count >= 0)
-                    {
-                        _slotsItemCount[i].gameObject.SetActive(true);
-                    }
-
-                    if (slot.Item.ItemSprite == null)
-                    {
-                        _slotsImages[i].gameObject.SetActive(false);
-                    }
-
-                    else if (slot.Item.ItemSprite != null)
-                    {
-                        _slotsImages[i].gameObject.SetActive(true);
-                    }
-                }
-            }
-
-            else if (_inventory.Container.Items.Count < _inventory.InventoryLimit)
-            {
-                for (int i = 0; i < _inventory.Container.Items.Count; i++)
-                {
-                    slot = _inventory.Container.Items[i];
-
-                    _slots[i].gameObject.SetActive(true);
-                    _slotsImages[i].sprite = slot.Item.ItemSprite;
-                    _slotsItemCount[i].text = slot.Count.ToString("n0");
-
-                    if (slot.Count == 0)
-                    {
-                        _slotsItemCount[i].gameObject.SetActive(false);
-                    }
-
-                    else if (slot.Count >= 0)
-                    {
-                        _slotsItemCount[i].gameObject.SetActive(true);
-                    }
-
-                    if (slot.Item.ItemSprite == null)
-                    {
-                        _slotsImages[i].gameObject.SetActive(false);
-                    }
-
-                    else if (slot.Item.ItemSprite != null)
-                    {
-                        _slotsImages[i].gameObject.SetActive(true);
-                    }
-                }
-
-                for (int i = _inventory.Container.Items.Count; i < _inventory.InventoryLimit - _inventory.Container.Items.Count; i++)
-                {
-                    _slots[i].gameObject.SetActive(false);
-                }
-            }
-
+        public void SetCellCount(int value, int cellNumber)
+        {
+            _slotsItemCount[cellNumber].text = value.ToString("n0");
         }
     }
 }
