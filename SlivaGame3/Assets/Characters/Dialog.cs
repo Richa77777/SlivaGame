@@ -8,6 +8,8 @@ namespace DialogSystem
 {
     public class Dialog : MonoBehaviour
     {
+        private DialogController _dialogController;
+        
         [SerializeField] private AllBranches _allBranches = new AllBranches();
 
         private List<Phrase> _currentBranch;
@@ -15,6 +17,7 @@ namespace DialogSystem
 
         private void Start()
         {
+            _dialogController = FindObjectOfType<DialogController>();
             _currentBranch = _allBranches.AllBranchesList[0].Branch;
         }
 
@@ -76,11 +79,11 @@ namespace DialogSystem
                 if (Input.GetKeyUp(KeyCode.Mouse0) || Input.GetTouch(0).phase == TouchPhase.Ended)
                 {
 
-                    if (_step < _currentBranch.Count && DialogController._dialogController.MightSetDialog == true)
+                    if (_step < _currentBranch.Count && _dialogController.MightSetDialog == true)
                     {
                         _currentBranch[_step].TriggeringBeforeActions();
 
-                        DialogController._dialogController.SetDialog(_currentBranch[_step].Speaker.Name, _currentBranch[_step].Speaker.NameColor, _currentBranch[_step].PhraseText, _currentBranch[_step]);
+                        _dialogController.SetDialog(_currentBranch[_step].Speaker, _currentBranch[_step].PhraseText, _currentBranch[_step].VoiceActing, _currentBranch[_step]);
 
                         _step++;
                     }

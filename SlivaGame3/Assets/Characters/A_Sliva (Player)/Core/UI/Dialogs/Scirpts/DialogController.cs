@@ -10,9 +10,6 @@ namespace DialogSystem
 
     public class DialogController : MonoBehaviour
     {
-        public static DialogController _dialogController;
-
-
         [SerializeField] private AudioSource _audioSource1;
         [SerializeField] private AudioSource _audioSource2;
 
@@ -26,7 +23,6 @@ namespace DialogSystem
 
         private void Awake()
         {
-            _dialogController = this;
             _audioSource1.clip = _dialogSound;
         }
 
@@ -35,20 +31,20 @@ namespace DialogSystem
             //SetDialog("Слива", "#AA4BC0", "Здравствуйте, меня зовут Сливарио.");
         }
 
-        public void SetDialog(string Name, string Color, string Text, Dialog.Phrase phrase)
+        public void SetDialog(Character speaker, string text, AudioClip voiceAction, Dialog.Phrase phrase)
         {
-            StartCoroutine(DialogPlayback(Name, Color, Text, phrase));
+            StartCoroutine(DialogPlayback(speaker, text, voiceAction, phrase));
         }
 
-        private IEnumerator DialogPlayback(string Name, string Color, string Text, Dialog.Phrase phrase)
+        private IEnumerator DialogPlayback(Character speaker, string text, AudioClip voiceAction, Dialog.Phrase phrase)
         {
             _mightSetDialog = false;
 
-            string nameText = Name;
-            string nameColor = Color;
+            string nameText = speaker.Name;
+            string nameColor = speaker.NameColor;
             string name = $"<size={_dialogText.fontSize + 5}><b><color={nameColor}>{nameText}:</color></b></size>";
 
-            string fullText = $"{name} {Text}";
+            string fullText = $"{name} {text}";
 
 
             for (int i = name.Length; i <= fullText.Length; i++)

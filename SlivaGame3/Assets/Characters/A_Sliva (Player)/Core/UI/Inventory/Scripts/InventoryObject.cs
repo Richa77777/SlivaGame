@@ -76,6 +76,11 @@ namespace InventorySpace
         public void ClearContainer()
         {
             _container.Items.Clear();
+
+            for (int i = _container.Items.Count; i < _inventoryLimit - _container.Items.Count; i++)
+            {
+                DisplayInventory._cellOnOff(false, i);
+            }
         }
 
         [ContextMenu("Save")]
