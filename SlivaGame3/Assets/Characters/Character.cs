@@ -8,10 +8,5 @@ public class Character : MonoBehaviour
     [SerializeField] private Color32 _nameColor;
 
     public string Name { get { return _name; } }
-    public string NameColor { get { return ColorUtility.ToHtmlStringRGBA(_nameColor);} }
-
-    private void Update()
-    {
-        print(ColorUtility.ToHtmlStringRGB(_nameColor));
-    }
+    public string NameColor { get { return "#" + ColorUtility.ToHtmlStringRGB(_nameColor);} }
 }

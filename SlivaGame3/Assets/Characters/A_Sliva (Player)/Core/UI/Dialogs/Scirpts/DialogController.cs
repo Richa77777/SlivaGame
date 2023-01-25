@@ -46,6 +46,16 @@ namespace DialogSystem
 
             string fullText = $"{name} {text}";
 
+            if (voiceAction != null)
+            {
+                _audioSource2.clip = voiceAction;
+                _audioSource2.Play();
+            }
+
+            else if (voiceAction == null)
+            {
+                _audioSource2.Stop();
+            }
 
             for (int i = name.Length; i <= fullText.Length; i++)
             {

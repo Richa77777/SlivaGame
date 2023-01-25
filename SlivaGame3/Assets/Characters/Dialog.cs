@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
 namespace DialogSystem
 {
     public class Dialog : MonoBehaviour
@@ -78,7 +77,6 @@ namespace DialogSystem
             {
                 if (Input.GetKeyUp(KeyCode.Mouse0) || Input.GetTouch(0).phase == TouchPhase.Ended)
                 {
-
                     if (_step < _currentBranch.Count && _dialogController.MightSetDialog == true)
                     {
                         _currentBranch[_step].TriggeringBeforeActions();

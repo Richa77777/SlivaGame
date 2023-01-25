@@ -11,14 +11,12 @@ namespace InventorySpace
     [CreateAssetMenu(fileName = "New Inventory System", menuName = "InventorySystem/Inventory", order = -100)]
     public class InventoryObject : ScriptableObject
     {
-        [SerializeField] private string _savePath;
-
+        //[SerializeField] private string _savePath;
         [SerializeField] private Inventory _container;
 
         private const int _inventoryLimit = 9;
 
         public int InventoryLimit { get => _inventoryLimit; }
-
         public Inventory Container { get => _container; }
 
         public void AddItem(ItemObject item, int count)
@@ -76,33 +74,30 @@ namespace InventorySpace
         public void ClearContainer()
         {
             _container.Items.Clear();
-
-            for (int i = _container.Items.Count; i < _inventoryLimit - _container.Items.Count; i++)
-            {
-                DisplayInventory._cellOnOff(false, i);
-            }
         }
 
-        [ContextMenu("Save")]
-        public void Save()
-        {
-            string saveData = JsonUtility.ToJson(this, true);
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(string.Concat(Application.persistentDataPath, _savePath));
-            bf.Serialize(file, saveData);
-            file.Close();
-        }
+        //public void Save()
+        //{
+        //    //string saveData = JsonUtility.ToJson(this, true);
+        //    //BinaryFormatter bf = new BinaryFormatter();
+        //    //FileStream file = File.Create(string.Concat(Application.persistentDataPath, _savePath));
+        //    //bf.Serialize(file, saveData);
+        //    //file.Close();
 
-        [ContextMenu("Load")]
+        //    //SaveLoadScript.PlayerSaveLoadScript.Save();
+        //}
+
         public void Load()
         {
-            if (File.Exists(string.Concat(Application.persistentDataPath, _savePath)))
-            {
-                BinaryFormatter bf = new BinaryFormatter();
-                FileStream file = File.Open(string.Concat(Application.persistentDataPath, _savePath), FileMode.Open);
-                JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
-                file.Close();
-            }
+            //if (File.Exists(string.Concat(Application.persistentDataPath, _savePath)))
+            //{
+            //    BinaryFormatter bf = new BinaryFormatter();
+            //    FileStream file = File.Open(string.Concat(Application.persistentDataPath, _savePath), FileMode.Open);
+            //    JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
+            //    file.Close();
+            //}
+
+            //SaveLoadScript.PlayerSaveLoadScript.Load();
 
             for (int i = 0; i < _container.Items.Count; i++)
             {
@@ -122,7 +117,12 @@ namespace InventorySpace
         [ContextMenu("Clear")]
         public void Clear()
         {
-            _container = new Inventory();
+            _container.SetItemList(new List<InventorySlot>());
+
+            for (int i = _container.Items.Count; i < _inventoryLimit; i++)
+            {
+                DisplayInventory._cellOnOff(false, i);
+            }
         }
     }
 
@@ -132,6 +132,10 @@ namespace InventorySpace
         [SerializeField] private List<InventorySlot> _items = new List<InventorySlot>();
         public List<InventorySlot> Items { get { return _items; } }
 
+        public void SetItemList(List<InventorySlot> list)
+        {
+            _items = list;
+        }
     }
 
     [System.Serializable]

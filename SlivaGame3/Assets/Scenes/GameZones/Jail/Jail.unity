@@ -220,9 +220,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 42406750974153987, guid: 85d75f816806ea8499a5b6fe154e1874, type: 3}
+      propertyPath: _nameColor.rgba
+      value: 12602282
+      objectReference: {fileID: 0}
     - target: {fileID: 232629046521563996, guid: 85d75f816806ea8499a5b6fe154e1874, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 232629046521563996, guid: 85d75f816806ea8499a5b6fe154e1874, type: 3}
       propertyPath: m_TagString
@@ -633,7 +637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &751285589
 Transform:
   m_ObjectHideFlags: 0
@@ -661,7 +665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b57189d28f2a243a4274957e5e66a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Sveta
+  _name: "\u0421\u0432\u0435\u0442\u0430"
   _nameColor:
     serializedVersion: 2
     rgba: 8092596
