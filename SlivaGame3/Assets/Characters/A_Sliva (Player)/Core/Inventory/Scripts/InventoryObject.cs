@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Items;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
-using System.IO;
 
 namespace InventorySpace
 {
-    [CreateAssetMenu(fileName = "New Inventory System", menuName = "InventorySystem/Inventory", order = -100)]
+    [CreateAssetMenu(fileName = "New Inventory System", menuName = "Inventory System/Inventory", order = -100)]
     public class InventoryObject : ScriptableObject
     {
         //[SerializeField] private string _savePath;

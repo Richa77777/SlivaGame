@@ -8,7 +8,7 @@ namespace DialogSystem
 {
     [RequireComponent(typeof(AudioSource))]
 
-    public class DialogController : MonoBehaviour
+    public class DialogsController : MonoBehaviour
     {
         [SerializeField] private AudioSource _audioSource1;
         [SerializeField] private AudioSource _audioSource2;

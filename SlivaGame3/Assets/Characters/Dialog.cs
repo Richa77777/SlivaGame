@@ -7,7 +7,7 @@ namespace DialogSystem
 {
     public class Dialog : MonoBehaviour
     {
-        private DialogController _dialogController;
+        private DialogsController _dialogController;
         
         [SerializeField] private AllBranches _allBranches = new AllBranches();
 
@@ -16,7 +16,7 @@ namespace DialogSystem
 
         private void Start()
         {
-            _dialogController = FindObjectOfType<DialogController>();
+            _dialogController = FindObjectOfType<DialogsController>();
             _currentBranch = _allBranches.AllBranchesList[0].Branch;
         }
 
