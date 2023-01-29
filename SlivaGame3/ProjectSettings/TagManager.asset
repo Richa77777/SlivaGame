@@ -4,10 +4,19 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Cloud
-  - Rock
-  - Grass
   - DialogController
+  - Dirty Ground
+  - Grass
+  - Gravel
+  - Leaves
+  - Metal
+  - Mud
+  - Rock
+  - Sand
+  - Snow
+  - Tile
+  - Water
+  - Wood
   layers:
   - Default
   - TransparentFX
