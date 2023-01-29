@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UI;
 
 namespace DialogSystem
 {
@@ -14,12 +14,20 @@ namespace DialogSystem
         [SerializeField] private AudioSource _audioSource2;
 
         [SerializeField] private AudioClip _dialogSound;
+        [SerializeField] private GameObject _dialogTab;
         [SerializeField] private TextMeshProUGUI _dialogText;
         [SerializeField] private float _timeBtwnChars = 0;
+        [SerializeField] private Button[] _answerButtons = new Button[4];
+        [SerializeField] private Dialog _currentDialog;
 
         private bool _mightSetDialog = true;
+        private bool _skip = false;
 
-        public bool MightSetDialog { get { return _mightSetDialog; } }
+        public GameObject DialogTab { get { return _dialogTab; } }
+        public TextMeshProUGUI DialogText { get { return _dialogText; } }
+        public Button[] AnswerButtons { get { return _answerButtons; } }
+        public Dialog CurrentDialog { get { return _currentDialog; } }
+        public bool MightSetDialog { get { return _mightSetDialog; } set { _mightSetDialog = value; } }
 
         private void Awake()
         {
@@ -31,13 +39,32 @@ namespace DialogSystem
             //SetDialog("Слива", "#AA4BC0", "Здравствуйте, меня зовут Сливарио.");
         }
 
-        public void SetDialog(Character speaker, string text, AudioClip voiceAction, Dialog.Phrase phrase)
+        public void SetCurrentDialog(Dialog _dialog)
         {
-            StartCoroutine(DialogPlayback(speaker, text, voiceAction, phrase));
+            _currentDialog = _dialog;
+            _dialogTab.SetActive(true);
+            _mightSetDialog = true;
         }
 
-        private IEnumerator DialogPlayback(Character speaker, string text, AudioClip voiceAction, Dialog.Phrase phrase)
+        public void EndDialog()
         {
+            _currentDialog = null;
+            _dialogTab.SetActive(false);
+        }
+
+        public void SkipPhrase()
+        {
+            _skip = true;
+        }
+
+        public void SetPhrase(Character speaker, string text, AudioClip voiceAction, Dialog.Phrase phrase)
+        {
+            StartCoroutine(PhrasePlayback(speaker, text, voiceAction, phrase));
+        }
+
+        private IEnumerator PhrasePlayback(Character speaker, string text, AudioClip voiceAction, Dialog.Phrase phrase)
+        {
+            _skip = false;
             _mightSetDialog = false;
 
             string nameText = speaker.Name;
@@ -59,29 +86,38 @@ namespace DialogSystem
 
             for (int i = name.Length; i <= fullText.Length; i++)
             {
-                if (fullText.ToCharArray()[i - 1].ToString() == "<")
+                if (_skip == false)
                 {
-                    while (fullText?.ToCharArray()?[i - 1].ToString() != ">")
+                    if (fullText.ToCharArray()[i - 1].ToString() == "<")
                     {
-                        i++;
+                        while (fullText?.ToCharArray()?[i - 1].ToString() != ">")
+                        {
+                            i++;
+                        }
+                    }
+
+                    if (fullText.ToCharArray()[i - 1].ToString() != "<" && fullText.ToCharArray()[i - 1].ToString() != ">")
+                    {
+                        _dialogText.text = fullText.Substring(0, i);
+
+                        if (string.IsNullOrWhiteSpace(fullText.ToCharArray()[i - 1].ToString()) == false)
+                        {
+                            _audioSource1.Play();
+                        }
+
+                        yield return new WaitForSeconds(_timeBtwnChars);
                     }
                 }
 
-                if (fullText.ToCharArray()[i - 1].ToString() != "<" && fullText.ToCharArray()[i - 1].ToString() != ">")
+                else if (_skip == true)
                 {
-                    _dialogText.text = fullText.Substring(0, i);
-
-                    if (string.IsNullOrWhiteSpace(fullText.ToCharArray()[i - 1].ToString()) == false)
-                    {
-                        _audioSource1.Play();
-                    }
-
-                    yield return new WaitForSeconds(_timeBtwnChars);
+                    _dialogText.text = fullText;
+                    break;
                 }
             }
 
+            _skip = false;
             _mightSetDialog = true;
-            phrase.TriggeringAfterActions();
         }
     }
 }

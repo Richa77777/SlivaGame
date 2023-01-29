@@ -11,9 +11,9 @@ namespace InventorySpace
     public class DisplayInventory : MonoBehaviour
     {
         private InventoryObject _inventory;
+        [SerializeField] private GameObject _inventoryGameObject;
 
         [SerializeField] private GameObject[] _slots = new GameObject[9];
-
         private Image[] _slotsImages = new Image[9];
         private TextMeshProUGUI[] _slotsItemCount = new TextMeshProUGUI[9];
 
