@@ -2415,6 +2415,7 @@ GameObject:
   - component: {fileID: 6463186114448328667}
   - component: {fileID: 42406750974153987}
   - component: {fileID: 9122964478943497008}
+  - component: {fileID: 4667314209435220042}
   - component: {fileID: 6580451413675180987}
   - component: {fileID: 9035719301775764470}
   - component: {fileID: 3769422390122842450}
@@ -2546,6 +2547,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerInventory: {fileID: 11400000, guid: 33950a23424f5d1448e38d64b05b31b3, type: 2}
+--- !u!114 &4667314209435220042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4022377490598716645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 242f6d1fd45a1ee4bbe870909df6a6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerTasks: {fileID: 11400000, guid: 31d0e78099209364c9df44a93b3653f1, type: 2}
 --- !u!114 &6580451413675180987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2572,7 +2586,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00340f173eb267b44a6877a008d356dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 4022377490598716645}
   _cameraSpeed: 1.5
 --- !u!114 &3769422390122842450
 MonoBehaviour:
