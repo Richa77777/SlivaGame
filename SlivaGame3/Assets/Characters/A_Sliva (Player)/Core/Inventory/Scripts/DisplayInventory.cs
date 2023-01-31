@@ -32,12 +32,6 @@ namespace InventorySpace
                 _slotsImages[i] = _slots[i].transform.GetChild(0).GetComponent<Image>();
                 _slotsItemCount[i] = _slots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             }
-
-            _cellOnOff += OnOffCell;
-            _cellCountOnOff += OnOffCellCount;
-            _cellImageOnOff += OnOffCellImage;
-            _cellSetCount += SetCellCount;
-            _cellSetImage += SetCellImage;
         }
 
         private void OnEnable()

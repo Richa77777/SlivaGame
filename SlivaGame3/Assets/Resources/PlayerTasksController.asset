@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _container:
     _tasks: []
+    _tasksHidden:
+    - _task: {fileID: 11400000, guid: 379c18be37e1f01498c665201d738217, type: 2}
+      _subtasks: []
+      _taskIsCompleted: 0
+      _taskIsHidden: 1
