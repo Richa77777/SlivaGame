@@ -12,14 +12,27 @@ namespace Tasks
         private TasksControllerObject _playerTask;
 
         [Header("Buttons")]
-        [SerializeField] private GameObject[] _taskButtons = new GameObject[5];
-        [SerializeField] private TextMeshProUGUI[] _taskNameButtonText = new TextMeshProUGUI[5];
+
+        [Header("inProgress")]
+        [SerializeField] private GameObject[] _inProgressTaskButtons = new GameObject[5];
+        [SerializeField] private TextMeshProUGUI[] _inProgressTaskNameButtonTexts = new TextMeshProUGUI[5];
+
+        [Header("Completed")]
+        [SerializeField] private GameObject[] _completedTaskButtons = new GameObject[5];
+        [SerializeField] private TextMeshProUGUI[] _completedTaskNameButtonTexts = new TextMeshProUGUI[5];
+
+        [Header("Failed")]
+        [SerializeField] private GameObject[] _failedTaskButtons = new GameObject[5];
+        [SerializeField] private TextMeshProUGUI[] _failedTaskNameButtonTexts = new TextMeshProUGUI[5];
 
         [Space(5f)]
+
         [Header("Info")]
         [SerializeField] private TextMeshProUGUI _taskInfoNameText;
         [SerializeField] private TextMeshProUGUI _taskInfoDescriptionText;
+
         [Space(25f)]
+
         [SerializeField] private GameObject[] _subtaskObjects = new GameObject[25];
         [SerializeField] private TextMeshProUGUI[] _subtaskTexts = new TextMeshProUGUI[25];
         [SerializeField] private Image[] _subtaskImages = new Image[25];
@@ -27,6 +40,7 @@ namespace Tasks
 
         private List<TaskObject> _taskObjectsInButtons = new List<TaskObject>();
 
+        [SerializeField] private RectTransform _dropdownsHolder;
 
         private void Awake()
         {
@@ -54,6 +68,7 @@ namespace Tasks
         private void Update()
         {
             UpdateTaskButtonsTab();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(_dropdownsHolder);
         }
 
         public void UpdateTaskButtonsTab()
