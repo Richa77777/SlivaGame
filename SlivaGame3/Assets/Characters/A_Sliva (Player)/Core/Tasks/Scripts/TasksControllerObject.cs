@@ -68,20 +68,42 @@ namespace Tasks
     public class TaskSlot
     {
         [SerializeField] private TaskObject _task;
+        
+        [Space(5f)]
         [SerializeField] private List<Subtask> _subtasks;
-        [SerializeField] private bool _taskIsCompleted;
-        [SerializeField] private bool _taskIsHidden;
+        [SerializeField] private int _subtaskStep;
+        [Space(5f)]
+
+        //[SerializeField] private bool _taskIsHidden;
+        [SerializeField] private TaskStates _taskState = TaskStates.inProgress;
 
         public TaskObject Task { get => _task; }
         public List<Subtask> Subtasks { get => _subtasks; }
-        public bool TaskIsCompleted { get => _taskIsCompleted; set => _taskIsCompleted = value; }
-        public bool TaskIsHidden { get => _taskIsHidden; set => _taskIsHidden = value; }
-
+        //public bool TaskIsHidden { get => _taskIsHidden; set => _taskIsHidden = value; }
+        public int SubtaskStep { get => _subtaskStep; }
+        public TaskStates TaskState { get => _taskState; }
 
         public TaskSlot(TaskObject task, List<Subtask> subtasks)
         {
             _task = task;
             _subtasks = subtasks;
         }
+
+        public void NextSubtaskStep()
+        {
+            _subtaskStep++;
+        }
+
+        public void SetTaskState(TaskStates state)
+        {
+            _taskState = state;
+        }
+    }
+
+    public enum TaskStates
+    {
+        inProgress,
+        Failed,
+        Completed
     }
 }

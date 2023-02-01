@@ -25,19 +25,26 @@ namespace Tasks
     public struct Subtask
     {
         [SerializeField] private string _subtaskText;
-        [SerializeField] private bool _isCompleted;
+        [SerializeField] private TaskStates _subtaskState;
+        [SerializeField] private bool _isHidden;
 
         public string SubtaskText { get => _subtaskText; }
-        public bool isCompleted { get => _isCompleted; }
+        public TaskStates SubtaskState { get => _subtaskState; }
+        public bool isHidden { get => _isHidden; }
 
         public void SetSubtaskText(string text)
         {
             _subtaskText = text;
         }
 
-        public void Completed()
+        public void SetSubtaskState(TaskStates state)
         {
-            _isCompleted = true;
+            _subtaskState = state;
+        }
+
+        public void Hide(bool value)
+        {
+            _isHidden = value;
         }
     }
 }
