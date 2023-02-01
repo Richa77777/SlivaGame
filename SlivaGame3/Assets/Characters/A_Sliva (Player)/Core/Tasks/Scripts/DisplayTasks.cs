@@ -23,7 +23,7 @@ namespace Tasks
         [SerializeField] private GameObject[] _subtaskObjects = new GameObject[25];
         [SerializeField] private TextMeshProUGUI[] _subtaskTexts = new TextMeshProUGUI[25];
         [SerializeField] private Image[] _subtaskImages = new Image[25];
-        [SerializeField] private Sprite[] _subtaskCells = new Sprite[2];
+        [SerializeField] private Sprite[] _subtaskCells = new Sprite[3];
 
         private List<TaskObject> _taskObjectsInButtons = new List<TaskObject>();
 
@@ -58,37 +58,37 @@ namespace Tasks
 
         public void UpdateTaskButtonsTab()
         {
-            int buttonNumber = 0;
+            //int buttonNumber = 0;
 
-            for (int i = 0; i < _playerTask.Container.TasksGet.Count; i++)
-            {
-                if (_playerTask.Container.TasksGet[i].TaskIsHidden == true)
-                {
-                    if (_taskObjectsInButtons.Contains(_playerTask.Container.TasksGet[i].Task))
-                    {
-                        _taskButtons[_taskObjectsInButtons.IndexOf(_playerTask.Container.TasksGet[i].Task)].gameObject.SetActive(false);
-                        _taskObjectsInButtons.RemoveAt(_taskObjectsInButtons.IndexOf(_playerTask.Container.TasksGet[i].Task));
+            //for (int i = 0; i < _playerTask.Container.TasksGet.Count; i++)
+            //{
+            //    if (_playerTask.Container.TasksGet[i].TaskIsHidden == true)
+            //    {
+            //        if (_taskObjectsInButtons.Contains(_playerTask.Container.TasksGet[i].Task))
+            //        {
+            //            _taskButtons[_taskObjectsInButtons.IndexOf(_playerTask.Container.TasksGet[i].Task)].gameObject.SetActive(false);
+            //            _taskObjectsInButtons.RemoveAt(_taskObjectsInButtons.IndexOf(_playerTask.Container.TasksGet[i].Task));
 
-                        Enable();
-                    }
-                }
-            }
+            //            Enable();
+            //        }
+            //    }
+            //}
 
-            for (int i = 0; i < _playerTask.Container.TasksGet.Count; i++)
-            {
-                if (_playerTask.Container.TasksGet[i].TaskIsHidden == false)
-                {
-                    _taskButtons[buttonNumber].SetActive(true);
-                    _taskNameButtonText[buttonNumber].text = _playerTask.Container.TasksGet[i].Task.TaskName;
+            //for (int i = 0; i < _playerTask.Container.TasksGet.Count; i++)
+            //{
+            //    if (_playerTask.Container.TasksGet[i].TaskIsHidden == false)
+            //    {
+            //        _taskButtons[buttonNumber].SetActive(true);
+            //        _taskNameButtonText[buttonNumber].text = _playerTask.Container.TasksGet[i].Task.TaskName;
 
-                    if (_taskObjectsInButtons.Contains(_playerTask.Container.TasksGet[i].Task) == false)
-                    {
-                        _taskObjectsInButtons.Insert(buttonNumber, _playerTask.Container.TasksGet[i].Task);
-                    }
+            //        if (_taskObjectsInButtons.Contains(_playerTask.Container.TasksGet[i].Task) == false)
+            //        {
+            //            _taskObjectsInButtons.Insert(buttonNumber, _playerTask.Container.TasksGet[i].Task);
+            //        }
 
-                    buttonNumber++;
-                }
-            }
+            //        buttonNumber++;
+            //    }
+            //}
         }
 
         public void UpdateTaskInfoTab(int taskIndex)

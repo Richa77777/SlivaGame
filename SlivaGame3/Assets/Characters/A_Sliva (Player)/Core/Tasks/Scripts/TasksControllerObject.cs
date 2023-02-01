@@ -52,10 +52,10 @@ namespace Tasks
 
                 for (int i = 0; i < _tasks.Count; i++)
                 {
-                    if (_tasks[i].TaskIsHidden == true)
-                    {
+                    //if (_tasks[i].TaskIsHidden == true)
+                    //{
                         _tasksHidden.Add(_tasks[i]);
-                    }
+                    //}
                 }
 
                 return _tasksHidden;
@@ -89,9 +89,9 @@ namespace Tasks
             _subtasks = subtasks;
         }
 
-        public void NextSubtaskStep()
+        public void NextSubtaskStep(int value)
         {
-            _subtaskStep++;
+            _subtaskStep += value;
         }
 
         public void SetTaskState(TaskStates state)
