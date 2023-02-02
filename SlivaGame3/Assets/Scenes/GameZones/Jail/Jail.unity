@@ -2658,14 +2658,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8688771174568675479, guid: fd47a0b9719b67842a12d729548ff019, type: 3}
-      propertyPath: _text
-      value: "\u042D\u0442\u043E \u043F\u0435\u0442\u0443\u0448\u043D\u044F"
-      objectReference: {fileID: 0}
-    - target: {fileID: 8688771174568675479, guid: fd47a0b9719b67842a12d729548ff019, type: 3}
-      propertyPath: _voiceActing
-      value: 
-      objectReference: {fileID: 8300000, guid: 1a4d939e3c11b02458389aded8391cc0, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

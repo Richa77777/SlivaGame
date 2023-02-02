@@ -329,7 +329,7 @@ MonoBehaviour:
           m_Calls:
           - m_Target: {fileID: 335820043273756598}
             m_TargetAssemblyTypeName: DialogSystem.Dialog, Assembly-CSharp
-            m_MethodName: CloseDialogTab
+            m_MethodName: EndDialog
             m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}

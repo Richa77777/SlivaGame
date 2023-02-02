@@ -45,6 +45,8 @@ namespace DialogSystem
         public void EndDialog()
         {
             _dialogTab.SetActive(false);
+            _audioSource1.Stop();
+            _audioSource2.Stop();
         }
 
         public void SkipPhrase()

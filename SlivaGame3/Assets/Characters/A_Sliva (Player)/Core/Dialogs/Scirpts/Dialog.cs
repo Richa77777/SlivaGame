@@ -115,6 +115,8 @@ namespace DialogSystem
             this.enabled = true;
 
             _dialogController.StartDialog();
+
+            CallDialog();
         }
 
         public void EndDialog()
@@ -127,7 +129,7 @@ namespace DialogSystem
 
         #region Branches And Phrases
         [System.Serializable]
-        public struct Phrase
+        public class Phrase
         {
             [SerializeField] private UnityEvent _actionsAfterPhrase;
 
