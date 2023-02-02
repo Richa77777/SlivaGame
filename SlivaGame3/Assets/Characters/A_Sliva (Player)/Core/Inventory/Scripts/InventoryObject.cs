@@ -73,44 +73,6 @@ namespace InventorySpace
             _container.Items.Clear();
         }
 
-        //public void Save()
-        //{
-        //    //string saveData = JsonUtility.ToJson(this, true);
-        //    //BinaryFormatter bf = new BinaryFormatter();
-        //    //FileStream file = File.Create(string.Concat(Application.persistentDataPath, _savePath));
-        //    //bf.Serialize(file, saveData);
-        //    //file.Close();
-
-        //    //SaveLoadScript.PlayerSaveLoadScript.Save();
-        //}
-
-        public void Load()
-        {
-            //if (File.Exists(string.Concat(Application.persistentDataPath, _savePath)))
-            //{
-            //    BinaryFormatter bf = new BinaryFormatter();
-            //    FileStream file = File.Open(string.Concat(Application.persistentDataPath, _savePath), FileMode.Open);
-            //    JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
-            //    file.Close();
-            //}
-
-            //SaveLoadScript.PlayerSaveLoadScript.Load();
-
-            for (int i = 0; i < _container.Items.Count; i++)
-            {
-                DisplayInventory._cellOnOff(_container.Items[i].ItemsCount > 0 ? true : false, i);
-                DisplayInventory._cellSetCount(_container.Items[i].ItemsCount, i);
-                DisplayInventory._cellSetImage(_container.Items[i].Item.ItemSprite, i);
-                DisplayInventory._cellCountOnOff(_container.Items[i].ItemsCount > 1 ? true : false, i);
-                DisplayInventory._cellImageOnOff(_container.Items[i].Item.ItemSprite != null ? true : false, i, _container.Items[i].Item.ItemSprite);
-            }
-
-            for (int i = _container.Items.Count; i < _inventoryLimit - _container.Items.Count; i++)
-            {
-                DisplayInventory._cellOnOff(false, i);
-            }
-        }
-
         [ContextMenu("Clear")]
         public void Clear()
         {

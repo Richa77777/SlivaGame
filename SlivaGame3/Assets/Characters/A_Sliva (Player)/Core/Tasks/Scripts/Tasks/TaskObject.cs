@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tasks
+namespace TasksSpace
 {
     public abstract class TaskObject : ScriptableObject
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Player;
 
-namespace Tasks
+namespace TasksSpace
 {
     public class TakeTask : MonoBehaviour
     {

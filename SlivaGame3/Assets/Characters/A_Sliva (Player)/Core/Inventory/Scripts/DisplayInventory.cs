@@ -77,5 +77,22 @@ namespace InventorySpace
         {
             _slotsImages[cellNumber].sprite = sprite;
         }
+
+        public void Enable()
+        {
+            for (int i = 0; i < _inventory.Container.Items.Count; i++)
+            {
+                _cellOnOff(_inventory.Container.Items[i].ItemsCount > 0 ? true : false, i);
+                _cellSetCount(_inventory.Container.Items[i].ItemsCount, i);
+                _cellSetImage(_inventory.Container.Items[i].Item.ItemSprite, i);
+                _cellCountOnOff(_inventory.Container.Items[i].ItemsCount > 1 ? true : false, i);
+                _cellImageOnOff(_inventory.Container.Items[i].Item.ItemSprite != null ? true : false, i, _inventory.Container.Items[i].Item.ItemSprite);
+            }
+
+            for (int i = _inventory.Container.Items.Count; i < _inventory.InventoryLimit - _inventory.Container.Items.Count; i++)
+            {
+                _cellOnOff(false, i);
+            }
+        }
     }
 }
