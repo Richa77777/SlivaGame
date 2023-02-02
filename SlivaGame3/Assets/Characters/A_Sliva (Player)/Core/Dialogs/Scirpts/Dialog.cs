@@ -17,15 +17,15 @@ namespace DialogSystem
         private Branch _currentBranch;
         private int _step = 0;
 
+        public List<Branch> BranchesList { get => _branchesList; }
+        public List<Choice> ChoicesList { get => _choicesList; }
+        public Branch CurrentBranch { get => _currentBranch; }
+        public int Step { get => _step; }
+
         private void Start()
         {
             _dialogController = FindObjectOfType<DialogsController>();
-        }
-
-        private void OnEnable()
-        {
-            _currentBranch = _branchesList[0];
-            _step = 0;
+            this.enabled = false;
         }
 
         private void Update()
@@ -39,7 +39,7 @@ namespace DialogSystem
             {
                 if (Input.GetKeyUp(KeyCode.Mouse0) || Input.GetTouch(0).phase == TouchPhase.Ended)
                 {
-                    if (_dialogController.DialogTab.activeInHierarchy == true && _dialogController.CurrentDialog != null)
+                    if (_dialogController.DialogTab.activeInHierarchy == true)
                     {
                         CallDialog();
                     }
@@ -67,7 +67,7 @@ namespace DialogSystem
             {
                 _dialogController.SkipPhrase();
             }
-        } 
+        }
 
         public void SetCurrentBranch(int branchNumber)
         {
@@ -86,6 +86,11 @@ namespace DialogSystem
             _step = 0;
         }
 
+        public void SetStep(int value)
+        {
+            _step = value;
+        }
+
         public void OnChoice(int choiceNumber)
         {
             _dialogController.MightSetDialog = false;
@@ -101,6 +106,22 @@ namespace DialogSystem
             {
                 _dialogController.AnswerButtons[i].gameObject.SetActive(true);
             }
+        }
+        public void StartDialog()
+        {
+            _currentBranch = _branchesList[0];
+            _step = 0;
+
+            this.enabled = true;
+
+            _dialogController.StartDialog();
+        }
+
+        public void EndDialog()
+        {
+            this.enabled = false;
+
+            _dialogController.EndDialog();
         }
 
 
@@ -123,6 +144,21 @@ namespace DialogSystem
             public void TriggeringAfterActions()
             {
                 _actionsAfterPhrase?.Invoke();
+            }
+
+            public void SetSpeaker(Character character)
+            {
+                _speaker = character;
+            }
+
+            public void SetPhraseText(string text)
+            {
+                _phraseText = text;
+            }
+
+            public void SetVoiceActing(AudioClip voiceActing)
+            {
+                _voiceActing = voiceActing;
             }
         }
 

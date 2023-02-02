@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Items;
 
-namespace Items
+namespace InteractionTab
 {
-    public class TakeItem : MonoBehaviour
+    public class TakeButton : MonoBehaviour
     {
         [SerializeField] private ItemObject _item;
 

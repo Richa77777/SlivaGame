@@ -18,7 +18,6 @@ namespace DialogSystem
         [SerializeField] private TextMeshProUGUI _dialogText;
         [SerializeField] private float _timeBtwnChars = 0;
         [SerializeField] private Button[] _answerButtons = new Button[4];
-        [SerializeField] private Dialog _currentDialog;
 
         private bool _mightSetDialog = true;
         private bool _skip = false;
@@ -26,7 +25,6 @@ namespace DialogSystem
         public GameObject DialogTab { get { return _dialogTab; } }
         public TextMeshProUGUI DialogText { get { return _dialogText; } }
         public Button[] AnswerButtons { get { return _answerButtons; } }
-        public Dialog CurrentDialog { get { return _currentDialog; } }
         public bool MightSetDialog { get { return _mightSetDialog; } set { _mightSetDialog = value; } }
 
         private void Awake()
@@ -39,16 +37,13 @@ namespace DialogSystem
             //SetDialog("Слива", "#AA4BC0", "Здравствуйте, меня зовут Сливарио.");
         }
 
-        public void SetCurrentDialog(Dialog _dialog)
+        public void StartDialog()
         {
-            _currentDialog = _dialog;
             _dialogTab.SetActive(true);
-            _mightSetDialog = true;
         }
 
         public void EndDialog()
         {
-            _currentDialog = null;
             _dialogTab.SetActive(false);
         }
 

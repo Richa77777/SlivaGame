@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DialogSystem;
 
-public class ExploreButtonScript : MonoBehaviour
+namespace InteractionTab
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ExploreButtonScript : MonoBehaviour
     {
-        
-    }
+        private DialogsController _dialogsController;
+        private Dialog _dialog;
+        private Character _sliva;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [SerializeField] private string _text;
+        [SerializeField] private AudioClip _voiceActing;
+
+        private void Start()
+        {
+            _dialogsController = FindObjectOfType<DialogsController>();
+            _dialog = GetComponent<Dialog>();
+            _sliva = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
+        }
+
+        public void Explore()
+        {
+            _dialog.BranchesList[0].Phrases[0].SetSpeaker(_sliva);
+            _dialog.BranchesList[0].Phrases[0].SetPhraseText(_text);
+            _dialog.BranchesList[0].Phrases[0].SetVoiceActing(_voiceActing);
+
+            _dialog.StartDialog();
+        }
     }
 }
