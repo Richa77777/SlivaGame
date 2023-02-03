@@ -4767,6 +4767,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a47f546fc70ec8428172694e78e4288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8343429985368653236 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8484001080024939086, guid: 42954fb2631227d4b85e86529ffff6f1, type: 3}
+  m_PrefabInstance: {fileID: 465255416106256378}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8343429985368653240 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8484001080024939074, guid: 42954fb2631227d4b85e86529ffff6f1, type: 3}
@@ -4784,6 +4789,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text
       objectReference: {fileID: 0}
+    - target: {fileID: 1068425454588031639, guid: 9269de87c906e4745a8344ba89cd5f01, type: 3}
+      propertyPath: _whatOff.Array.data[0]
+      value: 
+      objectReference: {fileID: 8343429985368653236}
     - target: {fileID: 1188003349814001442, guid: 9269de87c906e4745a8344ba89cd5f01, type: 3}
       propertyPath: m_Name
       value: UI
@@ -4912,6 +4921,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7254543861384346181, guid: 9269de87c906e4745a8344ba89cd5f01, type: 3}
+      propertyPath: _whatOff
+      value: 
+      objectReference: {fileID: 8343429985368653236}
     - target: {fileID: 7736102266465206466, guid: 9269de87c906e4745a8344ba89cd5f01, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0

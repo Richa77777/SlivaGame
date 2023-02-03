@@ -18,6 +18,7 @@ TagManager:
   - Water
   - Wood
   - Inventory
+  - Controls
   layers:
   - Default
   - TransparentFX
