@@ -17,6 +17,7 @@ TagManager:
   - Tile
   - Water
   - Wood
+  - Inventory
   layers:
   - Default
   - TransparentFX

@@ -10,11 +10,13 @@ namespace InventorySpace
     {
         //[SerializeField] private string _savePath;
         [SerializeField] private Inventory _container;
+        private bool _chooseOn = false;
 
         private const int _inventoryLimit = 9;
 
         public int InventoryLimit { get => _inventoryLimit; }
         public Inventory Container { get => _container; }
+        public bool ChooseOn { get => _chooseOn; set => _chooseOn = value; }
 
         public void AddItem(ItemObject item, int count)
         {

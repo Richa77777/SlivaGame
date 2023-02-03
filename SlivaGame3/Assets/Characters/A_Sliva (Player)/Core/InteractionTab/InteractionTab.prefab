@@ -264,7 +264,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1043098843725486400}
   - component: {fileID: 8688771174568675479}
-  - component: {fileID: 335820043273756598}
   - component: {fileID: 1043098843725486402}
   - component: {fileID: 1043098843725486397}
   - component: {fileID: 1043098843725486403}
@@ -310,39 +309,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _text: 
   _voiceActing: {fileID: 0}
---- !u!114 &335820043273756598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1043098843725486401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53906739883eccc4abdde334e6d80746, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _branchesList:
-  - _phrases:
-    - _actionsAfterPhrase:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 335820043273756598}
-            m_TargetAssemblyTypeName: DialogSystem.Dialog, Assembly-CSharp
-            m_MethodName: EndDialog
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      _speaker: {fileID: 0}
-      _phraseText: 
-      _voiceActing: {fileID: 0}
-  _choicesList: []
 --- !u!114 &1043098843725486402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,6 +508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2400633253338686146}
+  - component: {fileID: 154516343129235708}
   - component: {fileID: 6032383348022924343}
   - component: {fileID: 7985536775900174344}
   - component: {fileID: 6005061799399098585}
@@ -567,11 +534,27 @@ RectTransform:
   m_Father: {fileID: 1043098843620708262}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 3.7, y: 3.7}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &154516343129235708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770481238520293222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b6eef43e17914b488ead853754b0482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _needObject: {fileID: 0}
+  _actions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6032383348022924343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,7 +598,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7985536775900174344}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 154516343129235708}
+        m_TargetAssemblyTypeName: InteractionTab.UseItemButton, Assembly-CSharp
+        m_MethodName: OpenChooseTab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7985536775900174344
 MonoBehaviour:
   m_ObjectHideFlags: 0
