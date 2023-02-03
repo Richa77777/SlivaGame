@@ -15,12 +15,12 @@ namespace InteractionTab
         private UseItemButton _lastButton;
 
         private Dialog _dialog;
-
+        [SerializeField] private GameObject _textChoose;
         [SerializeField] private GameObject[] _chooseButtons = new GameObject[9];
 
         [SerializeField] private string[] _phrases = new string[5];
         [SerializeField] private AudioClip[] _voiceActions = new AudioClip[5];
-
+        
         private void Awake()
         {
             _playerInventory = FindObjectOfType<PlayerInventoryScript>().PlayerInventory;
@@ -30,6 +30,7 @@ namespace InteractionTab
         public void StartChoose()
         {
             gameObject.SetActive(true);
+            _textChoose.SetActive(true);
 
             for (int i = 0; i < _playerInventory.Container.Items.Count; i++)
             {
@@ -44,6 +45,7 @@ namespace InteractionTab
                 _chooseButtons[i].SetActive(false);
             }
 
+            _textChoose.SetActive(false);
             gameObject.SetActive(false);
         }
 
