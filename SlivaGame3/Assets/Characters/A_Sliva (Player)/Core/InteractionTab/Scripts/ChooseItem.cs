@@ -16,6 +16,7 @@ namespace InteractionTab
 
         private Dialog _dialog;
         [SerializeField] private GameObject _textChoose;
+        [SerializeField] private GameObject[] _closeButtons = new GameObject[2];
         [SerializeField] private GameObject[] _chooseButtons = new GameObject[9];
 
         [SerializeField] private string[] _phrases = new string[5];
@@ -31,6 +32,8 @@ namespace InteractionTab
         {
             gameObject.SetActive(true);
             _textChoose.SetActive(true);
+            _closeButtons[0].SetActive(false);
+            _closeButtons[1].SetActive(true);
 
             for (int i = 0; i < _playerInventory.Container.Items.Count; i++)
             {
@@ -46,6 +49,8 @@ namespace InteractionTab
             }
 
             _textChoose.SetActive(false);
+            _closeButtons[0].SetActive(true);
+            _closeButtons[1].SetActive(false);
             gameObject.SetActive(false);
         }
 

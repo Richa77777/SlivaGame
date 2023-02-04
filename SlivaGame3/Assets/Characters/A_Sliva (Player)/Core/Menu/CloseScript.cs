@@ -8,4 +8,10 @@ public class CloseScript : MonoBehaviour
     {
         whatClose.SetActive(false);
     }
+
+    public void ReturnToMenu()
+    {
+
+        gameObject.SetActive(true);
+    }
 }

@@ -1,20 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckObject : MonoBehaviour
+public class CheckObjectUI : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _whatOff = new List<GameObject>();
     [SerializeField] private List<GameObject> _object = new List<GameObject>();
 
     private int n = 0;
 
-    private void Update()
+    public static Action _checkObjects;
+
+    private void OnEnable()
     {
-        Check();
+        _checkObjects += Check;
     }
 
-    private void Check()
+    private void OnDisable()
+    {
+        _checkObjects -= Check;
+    }
+
+    public void Check()
     {
         n = 0;
 

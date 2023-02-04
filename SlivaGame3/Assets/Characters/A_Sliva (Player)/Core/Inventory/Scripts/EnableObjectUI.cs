@@ -8,9 +8,16 @@ public class EnableObjectUI : MonoBehaviour
 
     private void OnEnable()
     {
+        CheckObjectUI._checkObjects?.Invoke();
+
         for (int i = 0; i < _whatOff.Count; i++)
         {
             _whatOff[i].SetActive(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        CheckObjectUI._checkObjects?.Invoke();
     }
 }
