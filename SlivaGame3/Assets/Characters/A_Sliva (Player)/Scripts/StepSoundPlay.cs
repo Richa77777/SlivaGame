@@ -7,80 +7,18 @@ namespace Player.Sounds
 {
     public class StepSoundPlay : MonoBehaviour
     {
-        [Serializable] 
-        private struct StepSounds
-        {
-            [Serializable] 
-            public struct Walk
-            {
-                [SerializeField] public AudioClip _dirtyGround;
-                [SerializeField] public AudioClip _grass;
-                [SerializeField] public AudioClip _gravel;
-                [SerializeField] public AudioClip _leaves;
-                [SerializeField] public AudioClip _metal;
-                [SerializeField] public AudioClip _mud;
-                [SerializeField] public AudioClip _rock;
-                [SerializeField] public AudioClip _sand;
-                [SerializeField] public AudioClip _snow;
-                [SerializeField] public AudioClip _tile;
-                [SerializeField] public AudioClip _water;
-                [SerializeField] public AudioClip _wood;
-            }
-
-            [Serializable]
-            public struct Run
-            {
-                [SerializeField] public AudioClip _dirtyGround;
-                [SerializeField] public AudioClip _grass;
-                [SerializeField] public AudioClip _gravel;
-                [SerializeField] public AudioClip _leaves;
-                [SerializeField] public AudioClip _metal;
-                [SerializeField] public AudioClip _mud;
-                [SerializeField] public AudioClip _rock;
-                [SerializeField] public AudioClip _sand;
-                [SerializeField] public AudioClip _snow;
-                [SerializeField] public AudioClip _tile;
-                [SerializeField] public AudioClip _water;
-                [SerializeField] public AudioClip _wood;
-            }
-
-            [Serializable]
-            public struct Jump
-            {
-                [SerializeField] public AudioClip _dirtyGround;
-                [SerializeField] public AudioClip _grass;
-                [SerializeField] public AudioClip _gravel;
-                [SerializeField] public AudioClip _leaves;
-                [SerializeField] public AudioClip _metal;
-                [SerializeField] public AudioClip _mud;
-                [SerializeField] public AudioClip _rock;
-                [SerializeField] public AudioClip _sand;
-                [SerializeField] public AudioClip _snow;
-                [SerializeField] public AudioClip _tile;
-                [SerializeField] public AudioClip _water;
-                [SerializeField] public AudioClip _wood;
-            }
-
-            [SerializeField] public Walk _walk;
-            [Space(5)]
-            [SerializeField] public Run _run;
-            [Space(5)]
-            [SerializeField] public Jump _jump;
-        }
-
-        [SerializeField] private StepSounds _sounds;
-        
         [Space(15)]
         
         [SerializeField] private AudioClip _currentSound;
+        [SerializeField] private AudioSource _audioSource;
 
         public AudioClip CurrentSound { get { return _currentSound; } set { _currentSound = value; } }
 
-        private AudioSource _audioSource;
+        private StepSoundsBase _stepSoundBase;
 
-        private void Start()
+        private void Awake()
         {
-            _audioSource = GetComponent<AudioSource>();
+            _stepSoundBase = FindObjectOfType<StepSoundsBase>(true);
         }
 
         public void PlaySound()
@@ -95,40 +33,40 @@ namespace Player.Sounds
             switch (tag)
             {
                 case "Dirty Ground":
-                    _currentSound = _sounds._walk._dirtyGround;
+                    _currentSound = _stepSoundBase.Sounds.WalkSounds._dirtyGround;
                     break;
                 case "Grass":
-                    _currentSound = _sounds._walk._grass;
+                    _currentSound = _stepSoundBase.Sounds.WalkSounds._grass;
                     break;
                 case "Gravel":
-                    _currentSound = _sounds._walk._gravel;
+                    _currentSound = _stepSoundBase.Sounds.WalkSounds._gravel;
                     break;
                 case "Leaves":
-                    _currentSound = _sounds._walk._leaves;
+                    _currentSound = _stepSoundBase.Sounds.WalkSounds._leaves;
                     break;
                 case "Metal":
-                    _currentSound = _sounds._walk._metal;
+                    _currentSound = _stepSoundBase.Sounds.WalkSounds._metal;
                     break;
                 case "Mud":
-                    _currentSound = _sounds._walk._mud;
+                    _currentSound = _stepSoundBase.Sounds.WalkSounds._mud;
                     break;
                 case "Rock":
-                    _currentSound = _sounds._walk._rock;
+                    _currentSound = _stepSoundBase.Sounds.WalkSounds._rock;
                     break;
                 case "Sand":
-                    _currentSound = _sounds._walk._sand;
+                    _currentSound = _stepSoundBase.Sounds.WalkSounds._sand;
                     break;
                 case "Snow":
-                    _currentSound = _sounds._walk._snow;
+                    _currentSound = _stepSoundBase.Sounds.WalkSounds._snow;
                     break;
                 case "Tile":
-                    _currentSound = _sounds._walk._tile;
+                    _currentSound = _stepSoundBase.Sounds.WalkSounds._tile;
                     break;
                 case "Water":
-                    _currentSound = _sounds._walk._water;
+                    _currentSound = _stepSoundBase.Sounds.WalkSounds._water;
                     break;
                 case "Wood":
-                    _currentSound = _sounds._walk._wood;
+                    _currentSound = _stepSoundBase.Sounds.WalkSounds._wood;
                     break;
 
             }

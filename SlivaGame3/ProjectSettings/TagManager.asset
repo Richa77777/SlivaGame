@@ -19,6 +19,7 @@ TagManager:
   - Wood
   - Inventory
   - Controls
+  - WallInJail
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Interaction Tab
   - 
   - 
   - 

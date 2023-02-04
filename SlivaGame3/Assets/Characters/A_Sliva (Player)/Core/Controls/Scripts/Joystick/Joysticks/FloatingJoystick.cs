@@ -5,6 +5,14 @@ using UnityEngine.EventSystems;
 
 public class FloatingJoystick : Joystick
 {
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Break();
+        }
+    }
     protected override void Start()
     {
         base.Start();

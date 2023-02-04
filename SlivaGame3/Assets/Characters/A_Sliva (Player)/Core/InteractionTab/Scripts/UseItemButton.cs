@@ -19,8 +19,8 @@ namespace InteractionTab
 
         private void Start()
         {
-            _inventoryTab = GameObject.FindGameObjectWithTag("Player").transform.GetChild(2).GetChild(1).gameObject;
-            _chooseItem = _inventoryTab.GetComponent<ChooseItem>();
+            _chooseItem = FindObjectOfType<ChooseItem>(true);
+            _inventoryTab = _chooseItem.gameObject;
         }
 
         public void OpenChooseTab()

@@ -468,6 +468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 366825617}
   - component: {fileID: 366825620}
+  - component: {fileID: 366825621}
   - component: {fileID: 366825619}
   - component: {fileID: 366825618}
   m_Layer: 5
@@ -541,7 +542,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 366825619}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 366825621}
+        m_TargetAssemblyTypeName: PlayVremenno, Assembly-CSharp
+        m_MethodName: A
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &366825619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,6 +593,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 366825616}
   m_CullTransparentMesh: 1
+--- !u!114 &366825621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366825616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d642cbe2f22c343acc2c35f6cc3221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &452807187
 GameObject:
   m_ObjectHideFlags: 0

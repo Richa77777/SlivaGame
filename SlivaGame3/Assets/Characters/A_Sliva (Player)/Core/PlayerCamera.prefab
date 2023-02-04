@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8641645283218998697}
+  - component: {fileID: 4593124067869255591}
   - component: {fileID: 8641645283218998698}
   - component: {fileID: 8641645283218998699}
   m_Layer: 0
@@ -33,6 +34,58 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4593124067869255591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8641645283218998700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f5dab91ff57344d85dc6a8a1641e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+    WalkSounds:
+      _dirtyGround: {fileID: 8300000, guid: ac6649006dbee9e4685752e124111da7, type: 3}
+      _grass: {fileID: 8300000, guid: dd26e9057c37e2943993f701a764fc3e, type: 3}
+      _gravel: {fileID: 8300000, guid: 846819fd62ca22b478d33e537cd61c8c, type: 3}
+      _leaves: {fileID: 8300000, guid: 50ad27f2e46a7074e9864dbad1e7eade, type: 3}
+      _metal: {fileID: 8300000, guid: cb111f071b2e63844afba5ac99aceb2b, type: 3}
+      _mud: {fileID: 8300000, guid: 59dcb693bbd385e49aa6fa7ffd2f0f9f, type: 3}
+      _rock: {fileID: 8300000, guid: 1a7741daba5446e46a40f8074aae75dc, type: 3}
+      _sand: {fileID: 8300000, guid: 2e3cf5793eea2204cb2c8f93717c3938, type: 3}
+      _snow: {fileID: 8300000, guid: 05c42e498b8744744ad3fbf2055f3624, type: 3}
+      _tile: {fileID: 8300000, guid: b995bc1775ea83b4b8f861763e9a1424, type: 3}
+      _water: {fileID: 8300000, guid: caf48be4d869fe24f85866b95cdbe017, type: 3}
+      _wood: {fileID: 8300000, guid: c41fb169b2991c247a5466e00faa6639, type: 3}
+    RunSounds:
+      _dirtyGround: {fileID: 0}
+      _grass: {fileID: 0}
+      _gravel: {fileID: 0}
+      _leaves: {fileID: 0}
+      _metal: {fileID: 0}
+      _mud: {fileID: 0}
+      _rock: {fileID: 0}
+      _sand: {fileID: 0}
+      _snow: {fileID: 0}
+      _tile: {fileID: 0}
+      _water: {fileID: 0}
+      _wood: {fileID: 0}
+    JumpSounds:
+      _dirtyGround: {fileID: 0}
+      _grass: {fileID: 0}
+      _gravel: {fileID: 0}
+      _leaves: {fileID: 0}
+      _metal: {fileID: 0}
+      _mud: {fileID: 0}
+      _rock: {fileID: 0}
+      _sand: {fileID: 0}
+      _snow: {fileID: 0}
+      _tile: {fileID: 0}
+      _water: {fileID: 0}
+      _wood: {fileID: 0}
 --- !u!20 &8641645283218998698
 Camera:
   m_ObjectHideFlags: 0
