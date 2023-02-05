@@ -10,6 +10,8 @@ namespace Jail
 
         [SerializeField] private GameObject[] _movePoints = new GameObject[2];
 
+        [SerializeField] private DialogSystem.DialogTrigger _dialogTrigger;
+
         private Animator _animator;
 
         private int _nextPoint = 1;
@@ -17,8 +19,6 @@ namespace Jail
         private bool _notBehindWall;
 
         private IEnumerator _ien;
-
-
 
         public bool NotBehindWall { get => _notBehindWall; }
 
@@ -37,6 +37,7 @@ namespace Jail
         {
             if (collision.CompareTag("WallInJail"))
             {
+                _dialogTrigger.Enabled = true;
                 _notBehindWall = true;
             }
         }
@@ -45,6 +46,7 @@ namespace Jail
         {
             if (collision.CompareTag("WallInJail"))
             {
+                _dialogTrigger.Enabled = false;
                 _notBehindWall = false;
             }
         }
@@ -82,6 +84,11 @@ namespace Jail
 
             _ien = GoToNextPoint();
             StartCoroutine(_ien);
+        }
+
+        public void DostatMech()
+        {
+            _animator.Play("BeretMech", -1, 0f);
         }
     }
 }

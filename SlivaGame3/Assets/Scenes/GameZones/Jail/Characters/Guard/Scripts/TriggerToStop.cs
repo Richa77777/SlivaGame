@@ -1,25 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DialogSystem;
 
-
-public class TriggerToStop : MonoBehaviour
+namespace Jail
 {
-    [SerializeField] private Jail.MoveGuard _guardScript;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class TriggerToStop : MonoBehaviour
     {
-        if (collision.CompareTag("Player") && _guardScript.NotBehindWall == true)
+        [SerializeField] private MoveGuard _guardScript;
+
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            _guardScript.StopMove();
+            if (collision.CompareTag("Player"))
+            {
+                if (_guardScript.NotBehindWall == true)
+                {
+                    _guardScript.StopMove();
+                }
+            }
         }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && _guardScript.NotBehindWall == true)
+        private void OnTriggerExit2D(Collider2D collision)
         {
-            _guardScript.StartMove();
+            if (collision.CompareTag("Player") && _guardScript.NotBehindWall == true)
+            {
+                _guardScript.StartMove();
+            }
         }
     }
 }

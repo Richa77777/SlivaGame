@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2315205488069345026}
   - component: {fileID: 4719600781569268948}
   - component: {fileID: 7567179949613638751}
+  - component: {fileID: 2783724038035250400}
   - component: {fileID: 7707864473594824016}
   - component: {fileID: 6666652889973566888}
   m_Layer: 0
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2239580973484348673}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.926, y: 0.4344, z: 0}
-  m_LocalScale: {x: 0.8575, y: 0.1313, z: 1}
+  m_LocalPosition: {x: 0.435, y: 0.4344, z: 0}
+  m_LocalScale: {x: 1.2182466, y: 0.1313, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8038125697877295495}
@@ -100,7 +101,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guardScript: {fileID: 4047346210152621678}
-  _triggerNumber: 0
+--- !u!114 &2783724038035250400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2239580973484348673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc4eba213c89434cbb82320f30af3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialog: {fileID: 4573163448724619919}
 --- !u!61 &7707864473594824016
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -273,7 +286,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guardScript: {fileID: 4047346210152621678}
-  _triggerNumber: 1
 --- !u!61 &2635185825810131646
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -392,7 +404,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guardScript: {fileID: 4047346210152621678}
-  _triggerNumber: 0
 --- !u!212 &3848165552704188857
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -455,6 +466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8038125697877295495}
   - component: {fileID: 2646344227756232348}
+  - component: {fileID: 4573163448724619919}
   - component: {fileID: 4047346210152621678}
   - component: {fileID: 984873601349669595}
   - component: {fileID: 8038125697877295492}
@@ -500,10 +512,149 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b57189d28f2a243a4274957e5e66a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
+  _name: "\u0421\u0442\u0440\u0430\u0436\u043D\u0438\u043A"
   _nameColor:
     serializedVersion: 2
-    rgba: 0
+    rgba: 5263451
+--- !u!114 &4573163448724619919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8038125697877295493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53906739883eccc4abdde334e6d80746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _branchesList:
+  - _phrases:
+    - _actionsAfterPhrase:
+        m_PersistentCalls:
+          m_Calls: []
+      _speaker: {fileID: 0}
+      _phraseText: "\u0421\u043B\u044B\u0448\u044C \u0442\u044B, \u0445\u0443\u043B\u0435
+        \u044F \u0442\u0443\u0442 \u0434\u0435\u043B\u0430\u044E?"
+      _voiceActing: {fileID: 0}
+    - _actionsAfterPhrase:
+        m_PersistentCalls:
+          m_Calls: []
+      _speaker: {fileID: 2646344227756232348}
+      _phraseText: "\u041F\u043E\u0432\u0435\u0436\u043B\u0438\u0432\u0435\u0439,
+        \u0447\u0435\u043B\u044F\u0434\u044C."
+      _voiceActing: {fileID: 0}
+    - _actionsAfterPhrase:
+        m_PersistentCalls:
+          m_Calls: []
+      _speaker: {fileID: 2646344227756232348}
+      _phraseText: "\u0422\u044B \u043D\u0430\u0445\u043E\u0434\u0438\u0448\u044C\u0441\u044F
+        \u0432 \u0432\u0435\u043B\u0438\u043A\u043E\u0439 \u0442\u0435\u043C\u043D\u0438\u0446\u0435
+        \u0410\u043B\u0435\u043A\u0441\u0435\u0435\u0432\u0441\u043A\u043E\u0439
+        \u0418\u043C\u043F\u0435\u0440\u0438\u0438."
+      _voiceActing: {fileID: 0}
+    - _actionsAfterPhrase:
+        m_PersistentCalls:
+          m_Calls: []
+      _speaker: {fileID: 0}
+      _phraseText: "\u0422\u044B \u0430\u0445\u0443\u0435\u043B? \u041A\u0430\u043A\u0430\u044F
+        \u043D\u0430\u0445\u0443\u0439 \u0442\u0435\u043C\u043D\u0438\u0446\u0430.
+        \u0414\u0435\u043D\u044C\u0433\u0438 \u0434\u0430\u0432\u0430\u0439, \u0437\u0430\u0435\u0431\u0430\u043B."
+      _voiceActing: {fileID: 0}
+    - _actionsAfterPhrase:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 4573163448724619919}
+            m_TargetAssemblyTypeName: DialogSystem.Dialog, Assembly-CSharp
+            m_MethodName: OnChoice
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      _speaker: {fileID: 2646344227756232348}
+      _phraseText: "*\u0423\u0441\u043C\u0435\u0445\u043D\u0443\u043B\u0441\u044F*,
+        \u043A\u0430\u043A\u0438\u0435 \u0434\u0435\u043D\u044C\u0433\u0438, \u0442\u0435\u0431\u0435
+        \u043C\u043E\u0433\u0443 \u0434\u0430\u0442\u044C \u0442\u043E\u043B\u044C\u043A\u043E
+        \u043F\u043E \u0442\u0432\u043E\u0435\u0439 \u043C\u043E\u0440\u0434\u0435."
+      _voiceActing: {fileID: 0}
+  - _phrases:
+    - _actionsAfterPhrase:
+        m_PersistentCalls:
+          m_Calls: []
+      _speaker: {fileID: 0}
+      _phraseText: "\u041C\u0430\u043C\u0435 \u0441\u0432\u043E\u0435\u0439 \u043F\u043E
+        \u043C\u043E\u0440\u0434\u0435 \u0434\u0430\u0439."
+      _voiceActing: {fileID: 0}
+    - _actionsAfterPhrase:
+        m_PersistentCalls:
+          m_Calls: []
+      _speaker: {fileID: 2646344227756232348}
+      _phraseText: "\u0417\u0430 \u043C\u0430\u043C\u0443 \u0442\u044B \u043E\u0442\u0432\u0435\u0442\u0438\u0448\u044C!"
+      _voiceActing: {fileID: 0}
+  - _phrases:
+    - _actionsAfterPhrase:
+        m_PersistentCalls:
+          m_Calls: []
+      _speaker: {fileID: 0}
+      _phraseText: "\u0417\u0430\u0435\u0431\u0430\u043B."
+      _voiceActing: {fileID: 0}
+    - _actionsAfterPhrase:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 4573163448724619919}
+            m_TargetAssemblyTypeName: DialogSystem.Dialog, Assembly-CSharp
+            m_MethodName: EndDialog
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      _speaker: {fileID: 2646344227756232348}
+      _phraseText: "\u041C\u043E\u043B\u0447\u0438."
+      _voiceActing: {fileID: 0}
+  _choicesList:
+  - _answerTexts:
+    - "\u041C\u0430\u043C\u0435 \u0441\u0432\u043E\u0435\u0439 \u043F\u043E \u043C\u043E\u0440\u0434\u0435
+      \u0434\u0430\u0439."
+    - "\u0417\u0430\u0435\u0431\u0430\u043B."
+    _answerEvents:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4573163448724619919}
+          m_TargetAssemblyTypeName: DialogSystem.Dialog, Assembly-CSharp
+          m_MethodName: SetCurrentBranch
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4573163448724619919}
+          m_TargetAssemblyTypeName: DialogSystem.Dialog, Assembly-CSharp
+          m_MethodName: SetCurrentBranch
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &4047346210152621678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,6 +671,7 @@ MonoBehaviour:
   _movePoints:
   - {fileID: 0}
   - {fileID: 0}
+  _dialogTrigger: {fileID: 2783724038035250400}
 --- !u!114 &984873601349669595
 MonoBehaviour:
   m_ObjectHideFlags: 0
