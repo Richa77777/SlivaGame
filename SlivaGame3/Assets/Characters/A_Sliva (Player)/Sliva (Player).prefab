@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 2013053096785911939}
   - component: {fileID: 7575739147787074474}
   - component: {fileID: 267417225}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2425,7 +2425,7 @@ GameObject:
   - component: {fileID: 4022377490598716646}
   - component: {fileID: 2516242940047965766}
   - component: {fileID: 4092782897670031274}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sliva (Player)
   m_TagString: Player
   m_Icon: {fileID: 0}

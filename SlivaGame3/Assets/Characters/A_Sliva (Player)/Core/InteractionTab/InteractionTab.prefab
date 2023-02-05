@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 6830117781386807377}
   - component: {fileID: 7438850452963643893}
   - component: {fileID: 6617757770087629093}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: InteractionTab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

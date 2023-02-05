@@ -16,6 +16,10 @@ namespace Jail
 
         private bool _notBehindWall;
 
+        private IEnumerator _ien;
+
+
+
         public bool NotBehindWall { get => _notBehindWall; }
 
         private void Start()
@@ -24,7 +28,9 @@ namespace Jail
 
             gameObject.transform.localPosition = _movePoints[0].transform.localPosition;
 
-            StartCoroutine(GoToNextPoint());
+            _ien = GoToNextPoint();
+
+            StartCoroutine(_ien);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -45,14 +51,16 @@ namespace Jail
 
         public void StartMove()
         {
-            StartCoroutine(GoToNextPoint());
+            _animator.SetBool("IsWalking", true);
+            StartCoroutine(_ien);
         }
 
         public void StopMove()
         {
             _animator.SetBool("IsWalking", false);
-            StopCoroutine(GoToNextPoint());
+            StopCoroutine(_ien);
         }
+
 
         private IEnumerator GoToNextPoint()
         {
@@ -72,7 +80,8 @@ namespace Jail
 
             _nextPoint = _nextPoint == 0 ? 1 : 0;
 
-            StartCoroutine(GoToNextPoint());
+            _ien = GoToNextPoint();
+            StartCoroutine(_ien);
         }
     }
 }
