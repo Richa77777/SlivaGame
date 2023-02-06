@@ -218,7 +218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8343790638987723938
 RectTransform:
   m_ObjectHideFlags: 0
@@ -234,7 +234,7 @@ RectTransform:
   - {fileID: 2259858877903779927}
   - {fileID: 1897860150010996203}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.3058676}
@@ -388,6 +388,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3329056410472824959, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329056410472824959, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329056410472824959, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023661346384727087, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023661346384727087, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bbc2afd11c847db49956424d6f68affc, type: 3}
     - target: {fileID: 4944478832444945600, guid: e3ede07134060fc44b8e943774e48019, type: 3}
       propertyPath: m_Name
       value: Answer3
@@ -498,6 +518,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3329056410472824959, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329056410472824959, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329056410472824959, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023661346384727087, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023661346384727087, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bbc2afd11c847db49956424d6f68affc, type: 3}
     - target: {fileID: 4944478832444945600, guid: e3ede07134060fc44b8e943774e48019, type: 3}
       propertyPath: m_Name
       value: Answer2
@@ -608,6 +648,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3329056410472824959, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329056410472824959, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329056410472824959, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023661346384727087, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023661346384727087, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bbc2afd11c847db49956424d6f68affc, type: 3}
     - target: {fileID: 4944478832444945600, guid: e3ede07134060fc44b8e943774e48019, type: 3}
       propertyPath: m_Name
       value: Answer4
@@ -718,6 +778,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3329056410472824959, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329056410472824959, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329056410472824959, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023661346384727087, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023661346384727087, guid: e3ede07134060fc44b8e943774e48019, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bbc2afd11c847db49956424d6f68affc, type: 3}
     - target: {fileID: 4944478832444945600, guid: e3ede07134060fc44b8e943774e48019, type: 3}
       propertyPath: m_Name
       value: Answer1
