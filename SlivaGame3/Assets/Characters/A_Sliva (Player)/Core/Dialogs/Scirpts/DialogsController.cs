@@ -22,6 +22,7 @@ namespace DialogSystem
         private bool _mightSetDialog = true;
         private bool _skip = false;
 
+        public AudioSource AudioSourceVoiceAction { get => _audioSource2; }
         public GameObject DialogTab { get { return _dialogTab; } }
         public TextMeshProUGUI DialogText { get { return _dialogText; } }
         public Button[] AnswerButtons { get { return _answerButtons; } }

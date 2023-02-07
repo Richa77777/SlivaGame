@@ -93,6 +93,8 @@ namespace DialogSystem
 
         public void OnChoice(int choiceNumber)
         {
+            _dialogController.AudioSourceVoiceAction.Stop();
+
             _dialogController.MightSetDialog = false;
             _dialogController.DialogText.gameObject.SetActive(false);
 
