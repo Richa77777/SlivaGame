@@ -57,11 +57,6 @@ namespace TasksSpace
             ClearInfo();
         }
 
-        private void OnEnable()
-        {
-            Enable();
-        }
-
         public void UpdateTaskButtonsTab()
         {
             int index;

@@ -19,7 +19,7 @@ public class SaveLoadScript : PersistentMonoBehaviour
     [SerializeField] private List<TaskSlot> _tasksList;
 
 
-    private void Start()
+    private void Awake()
     {
         PlayerSaveLoadScript = this;
 

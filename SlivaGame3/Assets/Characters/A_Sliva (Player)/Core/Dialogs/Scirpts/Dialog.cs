@@ -12,19 +12,19 @@ namespace DialogSystem
         private DialogsController _dialogController;
 
         [SerializeField] private List<Branch> _branchesList = new List<Branch>();
-        [SerializeField] private List<Choice> _choicesList = new List<Choice>();
+        [SerializeField] private List<Choice> _allChoicesList = new List<Choice>();
 
         private Branch _currentBranch;
         private int _step = 0;
 
         public List<Branch> BranchesList { get => _branchesList; }
-        public List<Choice> ChoicesList { get => _choicesList; }
+        public List<Choice> AllChoicesList { get => _allChoicesList; }
         public Branch CurrentBranch { get => _currentBranch; }
         public int Step { get => _step; }
 
         private void Start()
         {
-            _dialogController = FindObjectOfType<DialogsController>();
+            _dialogController = FindObjectOfType<DialogsController>(true);
             this.enabled = false;
         }
 
@@ -98,13 +98,13 @@ namespace DialogSystem
             _dialogController.MightSetDialog = false;
             _dialogController.DialogText.gameObject.SetActive(false);
 
-            for (int i = 0; i < _choicesList[choiceNumber].AnswerTexts.Count; i++)
+            for (int i = 0; i < _allChoicesList[choiceNumber].ChoicesList.Count; i++)
             {
-                _dialogController.AnswerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = _choicesList[choiceNumber].AnswerTexts[i];
-                _dialogController.AnswerButtons[i].onClick = _choicesList[choiceNumber].AnswerEvents[i];
+                _dialogController.AnswerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = AllChoicesList[choiceNumber].ChoicesList[i].AnswerText;
+                _dialogController.AnswerButtons[i].onClick = AllChoicesList[choiceNumber].ChoicesList[i].AnswerEvent;
             }
 
-            for (int i = 0; i < _choicesList[choiceNumber].AnswerTexts.Count; i++)
+            for (int i = 0; i < _allChoicesList[choiceNumber].ChoicesList.Count; i++)
             {
                 _dialogController.AnswerButtons[i].gameObject.SetActive(true);
             }
@@ -176,18 +176,30 @@ namespace DialogSystem
         }
         #endregion
 
-
-
         #region Choices
+
         [System.Serializable]
         public struct Choice
         {
-            [SerializeField] private List<string> _answerTexts;
-            [SerializeField] private List<Button.ButtonClickedEvent> _answerEvents;
+            [SerializeField] private List<ChoiceElement> _choicesList;
 
-            public List<string> AnswerTexts { get => _answerTexts; }
-            public List<Button.ButtonClickedEvent> AnswerEvents { get => _answerEvents; }
+            public List<ChoiceElement> ChoicesList { get => _choicesList; }
+        }
+
+        [System.Serializable]
+        public struct ChoiceElement
+        {
+            [SerializeField] private string _answerText;
+            
+            [Space(25f)]
+
+            [SerializeField] private Button.ButtonClickedEvent _answerEvent;
+
+            public string AnswerText { get => _answerText; }
+            public Button.ButtonClickedEvent AnswerEvent { get => _answerEvent; }
         }
         #endregion
+
+        
     }
 }
