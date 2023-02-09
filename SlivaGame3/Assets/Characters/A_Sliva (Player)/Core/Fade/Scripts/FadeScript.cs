@@ -2,31 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FadeScript : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private GameObject _fadeImage;
-    private Animator _animator;
-
-    private void Awake()
+    public class FadeScript : MonoBehaviour
     {
-        _animator = GetComponent<Animator>();
-    }
+        [SerializeField] private GameObject _fadeImage;
 
-    public void FadeIn()
-    {
-        _fadeImage.SetActive(true);
-        _animator.Play("FadeIn", -1, 0f);
-    }
+        private Animator _animator;
 
-    public void FadeOut()
-    {
-        _animator.Play("FadeOut", -1, 0f);
+        public GameObject FadeImage { get => _fadeImage; }
+        public Animator AnimatorGet { get => _animator; }
 
-        Invoke(nameof(OffObject), _animator.GetCurrentAnimatorClipInfo(-1).Length);
-    }
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+        }
 
-    private void OffObject()
-    {
-        _fadeImage.SetActive(false);
+        public void FadeIn()
+        {
+            _fadeImage.SetActive(true);
+            _animator.Play("FadeIn", 0, 0f);
+        }
+
+        public void FadeOut(int delayBeforeOff)
+        {
+            _animator.Play("FadeOut", 0, 0f);
+
+            Invoke(nameof(OffObject), _animator.GetCurrentAnimatorClipInfo(0).Length + delayBeforeOff);
+        }
+
+        private void OffObject()
+        {
+            _fadeImage.SetActive(false);
+        }
     }
 }

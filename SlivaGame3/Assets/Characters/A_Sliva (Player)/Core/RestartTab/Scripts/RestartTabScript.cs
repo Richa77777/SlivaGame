@@ -3,41 +3,64 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RestartTabScript : MonoBehaviour
+namespace Player
 {
-    private FadeScript _fadeScript;
-
-    private Animator _fadeAnimator;
-    private Animator _animator;
-
-    private SpriteRenderer _fadeSpriteRenderer;
-    private SpriteRenderer _spriteRenderer;
-
-    private void Awake()
+    public class RestartTabScript : MonoBehaviour
     {
-        _fadeScript = FindObjectOfType<FadeScript>(true);
+        private FadeScript _fadeScript;
 
-        _animator = GetComponent<Animator>();
-        _fadeAnimator = _fadeScript.gameObject.GetComponent<Animator>();
+        private Animator _animator;
 
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _fadeSpriteRenderer = _fadeScript.gameObject.GetComponent<SpriteRenderer>();
-    }
+        private Canvas _fadeCanvas;
+        private Canvas _canvas;
 
-    public void RestartTabOn()
-    {
-        _animator.Play("RestartFadeIn", -1, 0f);
-    }
+        [SerializeField] private GameObject _restartTabObject;
 
-    public IEnumerator Restart()
-    {
-        _fadeSpriteRenderer.sortingOrder = _spriteRenderer.sortingOrder + 1;
-        _fadeScript.FadeIn();
+        private void Awake()
+        {
+            _fadeScript = FindObjectOfType<FadeScript>(true);
 
-        yield return new WaitForSeconds(_fadeAnimator.GetCurrentAnimatorClipInfo(-1).Length);
+            _animator = GetComponent<Animator>();
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
+            _canvas = GetComponent<Canvas>();
+            _fadeCanvas = _fadeScript.gameObject.GetComponent<Canvas>();
+        }
 
-        _fadeSpriteRenderer.sortingOrder = _spriteRenderer.sortingOrder - 1;
+        public void RestartTabOn()
+        {
+            _restartTabObject.SetActive(true);
+            _animator.Play("RestartFadeIn", 0, 0f);
+        }
+
+        public void RestartTabOff(int delayBeforeOff)
+        {
+            _animator.Play("RestartFadeOut", 0, 0f);
+
+            Invoke(nameof(OffObject), _animator.GetCurrentAnimatorClipInfo(0).Length + delayBeforeOff);
+        }
+
+        private void OffObject()
+        {
+            _restartTabObject.SetActive(false);
+        }
+
+        public void Restart(int delayBeforeRestart)
+        {
+            StartCoroutine(RestartE(delayBeforeRestart));
+        }
+
+        private IEnumerator RestartE(int delayBeforeRestart)
+        {
+            RestartTabOff(delayBeforeRestart);
+
+            yield return new WaitForSeconds(_fadeScript.AnimatorGet.GetCurrentAnimatorClipInfo(0).Length + delayBeforeRestart);
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+            yield return new WaitForSeconds(1.5f);
+
+            _restartTabObject.SetActive(false);
+            _fadeScript.FadeImage.SetActive(false);
+        }
     }
 }

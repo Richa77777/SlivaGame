@@ -49,6 +49,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1402858936346368304}
   - component: {fileID: 1402858936346368309}
+  - component: {fileID: 696666053807429813}
   - component: {fileID: 1402858936346368306}
   - component: {fileID: 1402858936346368307}
   m_Layer: 5
@@ -87,6 +88,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402858936346368305}
   m_CullTransparentMesh: 1
+--- !u!114 &696666053807429813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402858936346368305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 613c0b8be91433c4db592e7908c31b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1402858936346368306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +173,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1402858936346368306}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1402858936346368307}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 853998342725314326}
+        m_TargetAssemblyTypeName: RestartTabScript, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1402858936752130659
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +273,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -371,7 +408,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -561,6 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53cd9841502d5fd4bbf69314c0ab0a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _restartTabObject: {fileID: 1164580973789694489}
 --- !u!223 &1402858937978420559
 Canvas:
   m_ObjectHideFlags: 0
