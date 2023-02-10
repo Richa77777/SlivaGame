@@ -25,6 +25,7 @@ namespace DialogSystem
         private void Start()
         {
             _dialogController = FindObjectOfType<DialogsController>(true);
+
             this.enabled = false;
         }
 
@@ -109,6 +110,7 @@ namespace DialogSystem
                 _dialogController.AnswerButtons[i].gameObject.SetActive(true);
             }
         }
+
         public void StartDialog()
         {
             _currentBranch = _branchesList[0];

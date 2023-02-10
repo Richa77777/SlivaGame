@@ -9,7 +9,7 @@ namespace Jail
     {
         private FadeScript _fade;
         private RestartTabScript _restartTab;
-
+        
         [SerializeField] private AudioSource _audioSource;
 
         [SerializeField] private AudioClip _mech;

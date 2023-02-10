@@ -7,17 +7,12 @@ namespace Jail
     public class MoveGuard : MonoBehaviour
     {
         [SerializeField] private float _moveSpeed = 0f;
-
         [SerializeField] private GameObject[] _movePoints = new GameObject[2];
-
         [SerializeField] private DialogSystem.DialogTrigger _dialogTrigger;
 
         private Animator _animator;
-
         private int _nextPoint = 1;
-
         private bool _notBehindWall;
-
         private IEnumerator _ien;
 
         public bool NotBehindWall { get => _notBehindWall; }
@@ -51,6 +46,10 @@ namespace Jail
             }
         }
 
+        public void DisableTrigger()
+        {
+            _dialogTrigger.gameObject.SetActive(false);
+        }
         public void StartMove()
         {
             _animator.SetBool("IsWalking", true);

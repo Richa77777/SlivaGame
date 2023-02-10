@@ -18,6 +18,11 @@ namespace DialogSystem
             _dialogButton = FindObjectOfType<DialogButton>(true);
         }
 
+        private void OnDisable()
+        {
+            _dialogButton.gameObject.SetActive(false);
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Player") && _enabled == true)
