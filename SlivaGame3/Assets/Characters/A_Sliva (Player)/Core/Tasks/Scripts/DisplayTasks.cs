@@ -55,6 +55,9 @@ namespace TasksSpace
         public void Enable()
         {
             ClearInfo();
+            ClearButtons();
+
+            UpdateTaskButtonsTab();
         }
 
         public void UpdateTaskButtonsTab()
@@ -268,6 +271,24 @@ namespace TasksSpace
             for (int i = 0; i < _subtaskObjects.Length; i++)
             {
                 _subtaskObjects[i].SetActive(false);
+            }
+        }
+
+        private void ClearButtons()
+        {
+            for (int i = 0; i < _inProgressTaskButtons.Length; i++)
+            {
+                _inProgressTaskButtons[i].SetActive(false);
+            }
+
+            for (int i = 0; i < _completedTaskButtons.Length; i++)
+            {
+                _completedTaskButtons[i].SetActive(false);
+            }
+
+            for (int i = 0; i < _failedTaskButtons.Length; i++)
+            {
+                _failedTaskButtons[i].SetActive(false);
             }
         }
     }

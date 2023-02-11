@@ -10,8 +10,8 @@ namespace InventorySpace
     {
         //[SerializeField] private string _savePath;
         [SerializeField] private Inventory _container;
-        private bool _chooseOn = false;
 
+        private bool _chooseOn = false;
         private const int _inventoryLimit = 9;
 
         public int InventoryLimit { get => _inventoryLimit; }
@@ -29,30 +29,10 @@ namespace InventorySpace
                         if (_container.Items[i].ItemsCount + count <= 0)
                         {
                             _container.Items.RemoveAt(i);
-
-                            for (int j = 0; j < _container.Items.Count; j++)
-                            {
-                                DisplayInventory._cellOnOff(_container.Items[j].ItemsCount > 0 ? true : false, j);
-                                DisplayInventory._cellSetCount(_container.Items[j].ItemsCount, j);
-                                DisplayInventory._cellSetImage(_container.Items[j].Item.ItemSprite, j);
-                                DisplayInventory._cellCountOnOff(_container.Items[j].ItemsCount > 1 ? true : false, j);
-                                DisplayInventory._cellImageOnOff(_container.Items[j].Item.ItemSprite != null ? true : false, j, _container.Items[j].Item.ItemSprite);
-                            }
-
-                            for (int j = _container.Items.Count; j < _inventoryLimit - _container.Items.Count; j++)
-                            {
-                                DisplayInventory._cellOnOff(false, j);
-                            }
-
                             return;
                         }
 
                         _container.Items[i].AddAmount(count);
-
-                        DisplayInventory._cellOnOff(_container.Items[i].ItemsCount > 0 ? true : false, i);
-                        DisplayInventory._cellSetCount(_container.Items[i].ItemsCount, i);
-                        DisplayInventory._cellSetImage(_container.Items[i].Item.ItemSprite, i);
-                        DisplayInventory._cellCountOnOff(_container.Items[i].ItemsCount > 1 ? true : false, i);
                         return;
                     }
                 }
@@ -60,12 +40,6 @@ namespace InventorySpace
                 if (count > 0)
                 {
                     _container.Items.Add(new InventorySlot(item, count));
-
-                    DisplayInventory._cellOnOff(_container.Items[_container.Items.Count - 1].ItemsCount > 0 ? true : false, _container.Items.Count - 1);
-                    DisplayInventory._cellSetCount(_container.Items[_container.Items.Count - 1].ItemsCount, _container.Items.Count - 1);
-                    DisplayInventory._cellSetImage(_container.Items[_container.Items.Count - 1].Item.ItemSprite, _container.Items.Count - 1);
-                    DisplayInventory._cellCountOnOff(_container.Items[_container.Items.Count - 1].ItemsCount > 1 ? true : false, _container.Items.Count - 1);
-                    DisplayInventory._cellImageOnOff(_container.Items[_container.Items.Count - 1].Item.ItemSprite != null ? true : false, _container.Items.Count - 1, _container.Items[_container.Items.Count - 1].Item.ItemSprite);
                 }
             }
         }
@@ -79,11 +53,6 @@ namespace InventorySpace
         public void Clear()
         {
             _container.SetItemList(new List<InventorySlot>());
-
-            for (int i = _container.Items.Count; i < _inventoryLimit; i++)
-            {
-                DisplayInventory._cellOnOff(false, i);
-            }
         }
     }
 

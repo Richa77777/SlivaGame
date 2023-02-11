@@ -52,6 +52,8 @@ namespace DialogSystem
         {
             if (_dialogController.MightSetDialog == true)
             {
+                List<string> events = new List<string>();
+
                 if (_step > 0)
                 {
                     _currentBranch.Phrases[_step - 1].TriggeringAfterActions();
@@ -61,6 +63,23 @@ namespace DialogSystem
                 {
                     _dialogController.SetPhrase(_currentBranch.Phrases[_step].Speaker, _currentBranch.Phrases[_step].PhraseText, _currentBranch.Phrases[_step].VoiceActing, _currentBranch.Phrases[_step]); ;
                     _step++;
+                    return;
+                }
+                
+                else if (_step >= _currentBranch.Phrases.Count)
+                {
+                    if (_currentBranch.Phrases[_step - 1].ActionsAfterPhrase != null)
+                    {
+                        for (int i = 0; i < _currentBranch.Phrases[_step - 1].ActionsAfterPhrase.GetPersistentEventCount(); i++)
+                        {
+                            events.Add(_currentBranch.Phrases[_step - 1].ActionsAfterPhrase.GetPersistentMethodName(i));
+                        }
+                    }
+
+                    if (!events.Contains(nameof(SetStep)) && !events.Contains(nameof(OnChoice)) && !events.Contains(nameof(SetCurrentBranch)) && !events.Contains(nameof(EndDialog)))
+                    {
+                        EndDialog();
+                    }
                 }
             }
 
@@ -143,6 +162,7 @@ namespace DialogSystem
             [SerializeField] private string _phraseText;
             [SerializeField] private AudioClip _voiceActing;
 
+            public UnityEvent ActionsAfterPhrase { get => _actionsAfterPhrase; }
             public Character Speaker { get { return _speaker; } }
             public AudioClip VoiceActing { get { return _voiceActing; } }
             public string PhraseText { get { return _phraseText; } }
@@ -165,6 +185,11 @@ namespace DialogSystem
             public void SetVoiceActing(AudioClip voiceActing)
             {
                 _voiceActing = voiceActing;
+            }
+
+            public void SetActions(UnityEvent actions)
+            {
+                _actionsAfterPhrase = actions;
             }
         }
 

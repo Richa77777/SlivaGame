@@ -5,6 +5,7 @@ using InventorySpace;
 using Player;
 using Items;
 using DialogSystem;
+using UnityEngine.Events;
 
 namespace InteractionTab
 {
@@ -58,9 +59,18 @@ namespace InteractionTab
         {
             if (slotIndex <= _playerInventory.Container.Items.Count - 1)
             {
+                for (int i = 0; i < _lastButton.ItemsTalk.Count; i++)
+                {
+                    if (_lastButton.ItemsTalk[i].ItemGet == _playerInventory.Container.Items[slotIndex].Item)
+                    {
+                        DialogInChoose(_lastButton.ItemsTalk[i].TextGet, _lastButton.ItemsTalk[i].VoiceActionGet, _lastButton.ItemsTalk[i].ActionsGet);
+                        return;
+                    }
+                }
+
                 if (_playerInventory.Container.Items[slotIndex].Item == _needItem)
                 {
-                    _lastButton.ItemIs();
+                    DialogInChoose(_lastButton.TextGet, _lastButton.VoiceAction, _lastButton.ActionsTrue);
 
                     EndChoose();
                 }
@@ -78,14 +88,18 @@ namespace InteractionTab
             }
         }
 
-        public void SetNeedItem(ItemObject item)
+        public void DialogInChoose(string text, AudioClip voiceAction, UnityEvent actions)
         {
-            _needItem = item;
+            _dialog.BranchesList[0].Phrases[0].SetPhraseText(text);
+            _dialog.BranchesList[0].Phrases[0].SetVoiceActing(voiceAction);
+            _dialog.BranchesList[0].Phrases[0].SetActions(actions);
+            _dialog.StartDialog();
         }
 
         public void SetLastButton(UseItemButton button)
         {
             _lastButton = button;
+            _needItem = _lastButton.NeedObject;
         }
     }
 }

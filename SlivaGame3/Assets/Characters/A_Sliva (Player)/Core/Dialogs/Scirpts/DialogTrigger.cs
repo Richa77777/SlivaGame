@@ -20,7 +20,10 @@ namespace DialogSystem
 
         private void OnDisable()
         {
-            _dialogButton.gameObject.SetActive(false);
+            if (_dialog.gameObject.activeInHierarchy == true)
+            {
+                _dialogButton.gameObject.SetActive(false);
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

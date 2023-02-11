@@ -16,21 +16,27 @@ namespace InventorySpace
         private Image[] _slotsImages = new Image[9];
         private TextMeshProUGUI[] _slotsItemCount = new TextMeshProUGUI[9];
 
-        public static Action<bool, int> _cellOnOff;
-        public static Action<bool, int> _cellCountOnOff;
-        public static Action<bool, int, Sprite> _cellImageOnOff;
-        public static Action<int, int> _cellSetCount;
-        public static Action<Sprite, int> _cellSetImage;
+        private Action<bool, int> _cellOnOff;
+        private Action<bool, int> _cellCountOnOff;
+        private Action<bool, int, Sprite> _cellImageOnOff;
+        private Action<int, int> _cellSetCount;
+        private Action<Sprite, int> _cellSetImage;
 
         private void Start()
         {
-            _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Player.PlayerInventoryScript>().PlayerInventory;
+            _inventory = FindObjectOfType<Player.PlayerInventoryScript>(true).PlayerInventory;
 
             for (int i = 0; i <= _slots.Length - 1; i++)
             {
                 _slotsImages[i] = _slots[i].transform.GetChild(0).GetComponent<Image>();
                 _slotsItemCount[i] = _slots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             }
+
+            _cellOnOff += OnOffCell;
+            _cellCountOnOff += OnOffCellCount;
+            _cellImageOnOff += OnOffCellImage;
+            _cellSetCount += SetCellCount;
+            _cellSetImage += SetCellImage;
         }
 
         private void OnEnable()
