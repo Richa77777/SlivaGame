@@ -9,14 +9,17 @@ namespace TasksSpace
     {
         private TasksControllerObject _playerTasks;
 
+        [SerializeField] private TaskObject _task;
+        [SerializeField] private int _step;
+
         private void Start()
         {
             _playerTasks = FindObjectOfType<PlayerTasksScript>().PlayerTasks;
         }
 
-        public void AddTask(TaskObject task)
+        public void AddTask()
         {
-            _playerTasks.AddTask(task);
+            _playerTasks.AddTask(_task, _step);
         }
     }
 }

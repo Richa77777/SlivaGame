@@ -5,20 +5,15 @@ using UnityEngine.UI;
 
 namespace InteractionTab
 {
-    public class InteractionButtonTrigger : MonoBehaviour
+    public class ObjectTrigger : MonoBehaviour
     {
-        [SerializeField] private Button _triggerButton;
-
-        private void Start()
-        {
-            _triggerButton.onClick.AddListener(Disable);
-        }
+        [SerializeField] private GameObject _object;
 
         private void OnTriggerStay2D(Collider2D collision)
         {
             if (collision.CompareTag("Player"))
             {
-                _triggerButton.gameObject.SetActive(true);
+                _object.gameObject.SetActive(true);
             }
         }
 
@@ -26,13 +21,13 @@ namespace InteractionTab
         {
             if (collision.CompareTag("Player"))
             {
-                _triggerButton.gameObject.SetActive(false);
+                _object.gameObject.SetActive(false);
             }
         }
 
         public void Disable()
         {
-            _triggerButton.gameObject.SetActive(false);
+            _object.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
     }

@@ -13,7 +13,7 @@ namespace TasksSpace
         public Tasks Container { get => _container; }
         public int TasksLimit { get => _tasksLimit; }
 
-        public bool AddTask(TaskObject task)
+        public bool AddTask(TaskObject task, int step)
         {
             if (_container.GetTasksInProgress.Count < 5)
             {
@@ -25,7 +25,7 @@ namespace TasksSpace
                     }
                 }
 
-                _container.GetTasks.Add(new TaskSlot(task, task.Subtasks));
+                _container.GetTasks.Add(new TaskSlot(task, task.Subtasks, step));
                 return true;
             }
 
@@ -113,33 +113,69 @@ namespace TasksSpace
         [SerializeField] private TaskObject _task;
 
         [Space(5f)]
-        [SerializeField] private List<Subtask> _subtasks;
-        [SerializeField] private int _subtaskStep;
+        [SerializeField] private List<Subtask> _subtasks = new List<Subtask>();
+        [SerializeField] private int _subtaskStep = 0;
         [Space(5f)]
 
-        //[SerializeField] private bool _taskIsHidden;
         [SerializeField] private TaskStates _taskState = TaskStates.inProgress;
 
         public TaskObject Task { get => _task; }
         public List<Subtask> Subtasks { get => _subtasks; }
-        //public bool TaskIsHidden { get => _taskIsHidden; set => _taskIsHidden = value; }
         public int SubtaskStep { get => Mathf.Clamp(_subtaskStep, 0, _subtasks.Count); }
         public TaskStates TaskState { get => _taskState; }
 
-        public TaskSlot(TaskObject task, List<Subtask> subtasks)
+        public TaskSlot(TaskObject task, List<Subtask> subtasks, int step)
         {
             _task = task;
-            _subtasks = subtasks;
+            
+            if (subtasks.Count > 0)
+            {
+                _subtasks.Add(new Subtask());
+
+                for (int i = 0; i < subtasks.Count; i++)
+                {
+                    _subtasks[i].SubtaskText = subtasks[i].SubtaskText;
+                    _subtasks[i].SubtaskState = subtasks[i].SubtaskState;
+                    _subtasks[i].isHidden = subtasks[i].isHidden;
+
+                    if (i < subtasks.Count - 1)
+                    {
+                        _subtasks.Add(new Subtask());
+                    }
+                }
+            }
+
+
+            _subtaskStep = step;
         }
 
-        public void NextSubtaskStep(int value)
+        public void AddSubtaskStep(int value)
         {
             _subtaskStep += value;
+        }
+        public void SetSubtaskStep(int value)
+        {
+            _subtaskStep = value;
         }
 
         public void SetTaskState(TaskStates state)
         {
             _taskState = state;
+        }
+
+        public void SetSubtaskText(int subtaskIndex, string text)
+        {
+            _subtasks[subtaskIndex].SubtaskText = text;
+        }
+
+        public void SetSubtaskState(int subtaskIndex, TaskStates state)
+        {
+            _subtasks[subtaskIndex].SubtaskState = state;
+        }
+
+        public void Hide(int subtaskIndex, bool value)
+        {
+            _subtasks[subtaskIndex].isHidden = value;
         }
     }
 

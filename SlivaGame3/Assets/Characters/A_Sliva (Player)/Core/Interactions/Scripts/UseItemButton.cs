@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using InventorySpace;
 using Player;
@@ -8,7 +9,7 @@ using Items;
 
 namespace InteractionTab
 {
-    public class UseItemButton : MonoBehaviour
+    public class UseItemButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     {
         [SerializeField] ItemObject _needObject;
 
@@ -30,6 +31,7 @@ namespace InteractionTab
 
         private GameObject _inventoryTab;
         private ChooseItem _chooseItem;
+        private SetSoundAllButtons _soundAllButtons;
 
         public ItemObject NeedObject { get => _needObject; }
         public string TextGet { get => _text; }
@@ -41,6 +43,7 @@ namespace InteractionTab
         private void Start()
         {
             _chooseItem = FindObjectOfType<ChooseItem>(true);
+            _soundAllButtons = FindObjectOfType<SetSoundAllButtons>();
             _inventoryTab = _chooseItem.gameObject;
         }
 
@@ -50,6 +53,17 @@ namespace InteractionTab
 
             _chooseItem.SetLastButton(this);
             _chooseItem.StartChoose();
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            _soundAllButtons.PlaySoundButton();
+            OpenChooseTab();
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+
         }
 
         [System.Serializable]

@@ -14,7 +14,7 @@ namespace TasksSpace
 
         [Space(25f)]
 
-        [SerializeField] protected List<Subtask> _subtasks = new List<Subtask>();
+        [SerializeField] protected List<Subtask> _subtasks;
 
         public string TaskName { get => _taskName; }
         public string TaskDescription { get => _taskDescription; }
@@ -22,29 +22,14 @@ namespace TasksSpace
     }
 
     [System.Serializable]
-    public struct Subtask
+    public class Subtask
     {
         [SerializeField] private string _subtaskText;
         [SerializeField] private TaskStates _subtaskState;
         [SerializeField] private bool _isHidden;
 
-        public string SubtaskText { get => _subtaskText; }
-        public TaskStates SubtaskState { get => _subtaskState; }
-        public bool isHidden { get => _isHidden; }
-
-        public void SetSubtaskText(string text)
-        {
-            _subtaskText = text;
-        }
-
-        public void SetSubtaskState(TaskStates state)
-        {
-            _subtaskState = state;
-        }
-
-        public void Hide(bool value)
-        {
-            _isHidden = value;
-        }
+        public string SubtaskText { get => _subtaskText; set => _subtaskText = value; }
+        public TaskStates SubtaskState { get => _subtaskState; set => _subtaskState = value; }
+        public bool isHidden { get => _isHidden; set => _isHidden = value; }
     }
 }

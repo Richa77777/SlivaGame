@@ -276,19 +276,22 @@ namespace TasksSpace
 
         private void ClearButtons()
         {
-            for (int i = 0; i < _inProgressTaskButtons.Length; i++)
+            for (int i = 0; i < _taskObjectsInInProgressButtons.Count; i++)
             {
                 _inProgressTaskButtons[i].SetActive(false);
+                _taskObjectsInInProgressButtons.RemoveAt(i);
             }
 
-            for (int i = 0; i < _completedTaskButtons.Length; i++)
+            for (int i = 0; i < _taskObjectsInCompletedButtons.Count; i++)
             {
                 _completedTaskButtons[i].SetActive(false);
+                _taskObjectsInCompletedButtons.RemoveAt(i);
             }
 
-            for (int i = 0; i < _failedTaskButtons.Length; i++)
+            for (int i = 0; i < _taskObjectsInFailedButtons.Count; i++)
             {
                 _failedTaskButtons[i].SetActive(false);
+                _taskObjectsInFailedButtons.RemoveAt(i);
             }
         }
     }

@@ -1,29 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using DialogSystem;
 
 namespace InteractionTab
 {
-    public class ExploreButtonScript : MonoBehaviour
+    public class ExploreButtonScript : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     {
-        //private DialogsController _dialogsController;
         private Dialog _dialog;
+        private SetSoundAllButtons _soundAllButtons;
 
         [SerializeField] private string _text;
         [SerializeField] private AudioClip _voiceActing;
+        [SerializeField] private UnityEvent _actions;
+
+        [Space(10f)]
+
+        [SerializeField] private UnityEvent _extraActions;
 
         private void Start()
         {
-            //_dialogsController = FindObjectOfType<DialogsController>();
+            _soundAllButtons = FindObjectOfType<SetSoundAllButtons>();
             _dialog = GameObject.FindGameObjectWithTag("Player").GetComponent<Dialog>();
         }
 
         public void Explore()
         {
+            _extraActions?.Invoke();
+
             _dialog.BranchesList[0].Phrases[0].SetPhraseText(_text);
             _dialog.BranchesList[0].Phrases[0].SetVoiceActing(_voiceActing);
+            _dialog.BranchesList[0].Phrases[0].SetActions(_actions);
+
             _dialog.StartDialog();
+        }
+
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            _soundAllButtons.PlaySoundButton();
+            Explore();
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+
         }
     }
 }

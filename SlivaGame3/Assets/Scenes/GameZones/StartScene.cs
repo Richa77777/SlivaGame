@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class StartScene : MonoBehaviour
 {
     private SaveLoadScript _saveLoadScript;
+
+    [SerializeField] private UnityEvent _actionsOnStart = new UnityEvent();
 
     private void Start()
     {
@@ -12,5 +15,9 @@ public class StartScene : MonoBehaviour
 
         _saveLoadScript.Load();
         _saveLoadScript.Save();
+
+        _actionsOnStart?.Invoke();
     }
+
+    
 }
