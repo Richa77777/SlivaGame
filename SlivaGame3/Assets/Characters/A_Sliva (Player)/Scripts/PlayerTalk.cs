@@ -10,9 +10,9 @@ namespace Player
     {
         private Dialog _playerDialog;
 
-        private void Start()
+        private void Awake()
         {
-            _playerDialog = GameObject.FindGameObjectWithTag("Player").GetComponent<Dialog>();
+            _playerDialog = GetComponent<Dialog>();
         }
 
         public void SetText(string text)

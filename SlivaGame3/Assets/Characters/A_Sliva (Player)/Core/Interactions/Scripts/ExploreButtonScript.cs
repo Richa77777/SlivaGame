@@ -22,12 +22,19 @@ namespace InteractionTab
 
         private void Start()
         {
-            _soundAllButtons = FindObjectOfType<SetSoundAllButtons>();
+            _soundAllButtons = FindObjectOfType<SetSoundAllButtons>(true);
             _dialog = GameObject.FindGameObjectWithTag("Player").GetComponent<Dialog>();
         }
 
         public void Explore()
         {
+            Debug.Log(_dialog);
+            Debug.Log(_soundAllButtons);
+            Debug.Log(_text);
+            Debug.Log(_voiceActing);
+            Debug.Log(_actions);
+            Debug.Log(_extraActions);
+
             _extraActions?.Invoke();
 
             _dialog.BranchesList[0].Phrases[0].SetPhraseText(_text);

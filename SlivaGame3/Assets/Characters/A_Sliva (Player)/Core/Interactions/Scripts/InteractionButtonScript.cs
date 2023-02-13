@@ -23,7 +23,7 @@ namespace InteractionTab
 
         private void Start()
         {
-            _playerTalk = FindObjectOfType<PlayerTalk>();
+            _playerTalk = FindObjectOfType<PlayerTalk>(true);
             _objectTrigger = transform.parent.GetComponentInChildren<ObjectTrigger>();
         }
 
@@ -31,7 +31,7 @@ namespace InteractionTab
         {
             _extraActions?.Invoke();
 
-            if (_text != "")
+            if (!string.IsNullOrWhiteSpace(_text))
             {
                 _playerTalk.ClearAll();
                 _playerTalk.SetText(_text);
