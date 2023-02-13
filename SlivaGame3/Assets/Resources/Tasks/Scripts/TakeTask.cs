@@ -12,7 +12,7 @@ namespace TasksSpace
         [SerializeField] private TaskObject _task;
         [SerializeField] private int _step;
 
-        private void Start()
+        private void Awake()
         {
             _playerTasks = FindObjectOfType<PlayerTasksScript>().PlayerTasks;
         }

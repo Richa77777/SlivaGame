@@ -24,10 +24,12 @@ namespace TasksSpace
     [System.Serializable]
     public class Subtask
     {
+        [SerializeField] private int _subtaskId;
         [SerializeField] private string _subtaskText;
         [SerializeField] private TaskStates _subtaskState;
         [SerializeField] private bool _isHidden;
 
+        public int SubtaskId { get => _subtaskId; set => _subtaskId = value; }
         public string SubtaskText { get => _subtaskText; set => _subtaskText = value; }
         public TaskStates SubtaskState { get => _subtaskState; set => _subtaskState = value; }
         public bool isHidden { get => _isHidden; set => _isHidden = value; }

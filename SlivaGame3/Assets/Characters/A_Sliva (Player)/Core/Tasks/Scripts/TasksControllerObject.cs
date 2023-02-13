@@ -134,6 +134,7 @@ namespace TasksSpace
 
                 for (int i = 0; i < subtasks.Count; i++)
                 {
+                    _subtasks[i].SubtaskId = subtasks[i].SubtaskId;
                     _subtasks[i].SubtaskText = subtasks[i].SubtaskText;
                     _subtasks[i].SubtaskState = subtasks[i].SubtaskState;
                     _subtasks[i].isHidden = subtasks[i].isHidden;

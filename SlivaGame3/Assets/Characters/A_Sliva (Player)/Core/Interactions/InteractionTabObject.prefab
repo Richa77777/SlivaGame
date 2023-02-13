@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2207445123884298871}
   - component: {fileID: 2207445123884298870}
   - component: {fileID: 5625783826544031110}
+  - component: {fileID: 5950541965787698717}
   m_Layer: 0
   m_Name: InteractionTab
   m_TagString: Untagged
@@ -108,7 +109,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -128,6 +129,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2207445123884298864}
   m_CullTransparentMesh: 1
+--- !u!210 &5950541965787698717
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2207445123884298864}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1000
+  m_SortAtRoot: 0
 --- !u!1 &2207445123980616854
 GameObject:
   m_ObjectHideFlags: 0

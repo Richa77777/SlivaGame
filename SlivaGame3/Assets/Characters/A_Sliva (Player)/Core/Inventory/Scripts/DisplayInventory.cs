@@ -81,6 +81,7 @@ namespace InventorySpace
         public void SetCellImage(Sprite sprite, int cellNumber)
         {
             _slotsImages[cellNumber].sprite = sprite;
+            _slotsImages[cellNumber].preserveAspect = true;
         }
 
         public void Enable()

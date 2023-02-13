@@ -15,6 +15,10 @@ namespace InteractionTab
         [SerializeField] private AudioClip _voiceAction;
         [SerializeField] private UnityEvent _actions;
 
+        [Space(10f)]
+
+        [SerializeField] private UnityEvent _extraActions;
+
         private ObjectTrigger _objectTrigger;
 
         private void Start()
@@ -25,11 +29,16 @@ namespace InteractionTab
 
         public void StartInteract()
         {
-            _playerTalk.ClearAll();
-            _playerTalk.SetText(_text);
-            _playerTalk.SetVoiceAction(_voiceAction);
-            _playerTalk.SetActions(_actions);
-            _playerTalk.PlayDialog();
+            _extraActions?.Invoke();
+
+            if (_text != "")
+            {
+                _playerTalk.ClearAll();
+                _playerTalk.SetText(_text);
+                _playerTalk.SetVoiceAction(_voiceAction);
+                _playerTalk.SetActions(_actions);
+                _playerTalk.PlayDialog();
+            }
         }
 
         public void OnPointerUp(PointerEventData eventData)

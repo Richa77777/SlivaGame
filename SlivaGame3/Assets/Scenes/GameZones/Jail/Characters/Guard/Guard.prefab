@@ -195,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8038125697877295495}
-  - component: {fileID: 8823128599399243427}
+  - component: {fileID: 6801582391647048032}
   - component: {fileID: 2646344227756232348}
   - component: {fileID: 4573163448724619919}
   - component: {fileID: 9063556441762319535}
@@ -207,6 +207,8 @@ GameObject:
   - component: {fileID: 3644735842771138905}
   - component: {fileID: 444003193861993660}
   - component: {fileID: 3772419000088210150}
+  - component: {fileID: 1182996215350232899}
+  - component: {fileID: 7316739988603687935}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Untagged
@@ -231,7 +233,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!210 &8823128599399243427
+--- !u!210 &6801582391647048032
 SortingGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -385,6 +387,30 @@ MonoBehaviour:
     - _actionsAfterPhrase:
         m_PersistentCalls:
           m_Calls:
+          - m_Target: {fileID: 1182996215350232899}
+            m_TargetAssemblyTypeName: TasksSpace.SubtaskStateSet, Assembly-CSharp
+            m_MethodName: SetState
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 7316739988603687935}
+            m_TargetAssemblyTypeName: TasksSpace.SubtaskStepAddSet, Assembly-CSharp
+            m_MethodName: AddStep
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 1
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
           - m_Target: {fileID: 4047346210152621678}
             m_TargetAssemblyTypeName: Jail.MoveGuard, Assembly-CSharp
             m_MethodName: DisableTrigger
@@ -830,6 +856,34 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1182996215350232899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8038125697877295493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef3880be36df43458b3addc8f77814e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _task: {fileID: 11400000, guid: 379c18be37e1f01498c665201d738217, type: 2}
+  _subtaskId: 0
+  _state: 2
+--- !u!114 &7316739988603687935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8038125697877295493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 223a5b8367a1aaf4a98d861e48dd1dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _task: {fileID: 11400000, guid: 379c18be37e1f01498c665201d738217, type: 2}
 --- !u!1001 &8038125699280128622
 PrefabInstance:
   m_ObjectHideFlags: 0

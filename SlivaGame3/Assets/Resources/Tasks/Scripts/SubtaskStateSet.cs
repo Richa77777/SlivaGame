@@ -9,7 +9,7 @@ namespace TasksSpace
         private TasksControllerObject _playerTasks;
 
         [SerializeField] private TaskObject _task;
-        [SerializeField] private int _subtaskIndex;
+        [SerializeField] private int _subtaskId;
         [SerializeField] private TaskStates _state;
 
         private void Start()
@@ -20,6 +20,7 @@ namespace TasksSpace
         public void SetState()
         {
             TaskSlot currentSlot = null;
+            int subtaskIndex = 0;
 
             for (int i = 0; i < _playerTasks.Container.GetTasks.Count; i++)
             {
@@ -30,9 +31,18 @@ namespace TasksSpace
                 }
             }
 
+            for (int i = 0; i < currentSlot.Subtasks.Count; i++)
+            {
+                if (currentSlot.Subtasks[i].SubtaskId == _subtaskId)
+                {
+                    subtaskIndex = currentSlot.Subtasks.IndexOf(currentSlot.Subtasks[i]);
+                    break;
+                }
+            }
+
             if (currentSlot != null)
             {
-                currentSlot.SetSubtaskState(_subtaskIndex, _state);
+                currentSlot.SetSubtaskState(subtaskIndex, _state);
 
             }
         }
