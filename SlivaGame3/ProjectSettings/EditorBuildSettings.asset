@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu/MainMenu.unity
     guid: 1f1578f0acf1e224dbdfbb4694affc0c
   - enabled: 1
-    path: Assets/Scenes/GameZones/Jail/Jail.unity
+    path: Assets/Scenes/Chapters/Begin/GameZones/Jail/Jail.unity
     guid: 394fbbb96e7fb1243ab512760f2f068e
   m_configObjects: {}

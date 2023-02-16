@@ -11,7 +11,6 @@ namespace Player
         private Rigidbody2D _rigidbody;
         private Animator _animator;
 
-        [Range (0.0f, 10.0f)]
         [SerializeField] private float _moveSpeed;
 
         private void Awake()
@@ -28,7 +27,7 @@ namespace Player
 
         private void Move()
         {
-            _rigidbody.velocity = new Vector2(_joystick.Horizontal * _moveSpeed, _joystick.Vertical * _moveSpeed);
+            _rigidbody.velocity = new Vector2(_joystick.Horizontal * _moveSpeed * Time.fixedDeltaTime, _joystick.Vertical * _moveSpeed * Time.fixedDeltaTime);
 
             if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
             {

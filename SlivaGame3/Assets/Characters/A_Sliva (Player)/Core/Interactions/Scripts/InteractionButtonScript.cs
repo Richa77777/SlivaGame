@@ -24,7 +24,7 @@ namespace InteractionTab
         private void Start()
         {
             _playerTalk = FindObjectOfType<PlayerTalk>(true);
-            _objectTrigger = transform.parent.GetComponentInChildren<ObjectTrigger>();
+            _objectTrigger = transform.parent.GetComponentInChildren<ObjectTrigger>(true);
         }
 
         public void StartInteract()

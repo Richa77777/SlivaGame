@@ -28,13 +28,6 @@ namespace InteractionTab
 
         public void Explore()
         {
-            Debug.Log(_dialog);
-            Debug.Log(_soundAllButtons);
-            Debug.Log(_text);
-            Debug.Log(_voiceActing);
-            Debug.Log(_actions);
-            Debug.Log(_extraActions);
-
             _extraActions?.Invoke();
 
             _dialog.BranchesList[0].Phrases[0].SetPhraseText(_text);
