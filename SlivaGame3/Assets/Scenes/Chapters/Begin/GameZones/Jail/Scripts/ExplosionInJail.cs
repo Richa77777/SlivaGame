@@ -30,7 +30,6 @@ namespace Jail
         private IEnumerator ExplosionE()
         {
             _playerAnimator.Play("Jail_BoomDost", 0, 0);
-            _fade.FadeImage.SetActive(true);
 
             yield return new WaitForSeconds(_playerAnimator.GetCurrentAnimatorClipInfo(0).Length + 1);
 
