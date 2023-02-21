@@ -241,7 +241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1512175035620863989, guid: 67d0df12e87c89c4b850dbcd7a6388ac, type: 3}
       propertyPath: m_Name
-      value: InteractionButton
+      value: Boom
       objectReference: {fileID: 0}
     - target: {fileID: 1512175035620863989, guid: 67d0df12e87c89c4b850dbcd7a6388ac, type: 3}
       propertyPath: m_IsActive
